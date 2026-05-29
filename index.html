@@ -3,202 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kayriott Hotel & Suites — Luxury Accommodation in Effurun-Warri</title>
-    
-    <!-- PERFORMANCE: Preconnect to external resources -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+    <title>Kayriott Hotel & Suites — Luxury in Effurun-Warri</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;600&family=Outfit:wght@300;500&display=swap" rel="stylesheet">
     <style>
-        /* PERFORMANCE: Critical CSS Variables & Base */
         :root {
-            --gold: #C9A84C; --gold-light: #E8C97A; --dark: #0D0D0D; --dark-2: #161616;
-            --off-white: #F7F4EF; --muted: #8A8070; --white: #fff;
-            --serif: 'Cormorant Garamond', Georgia, serif; --sans: 'Outfit', sans-serif;
+            --gold:#C9A84C; --gold-light:#E8C97A; --dark:#0D0D0D; --white:#fff;
+            --serif:'Cormorant Garamond',serif; --sans:'Outfit',sans-serif;
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: var(--sans); background: var(--dark); color: var(--off-white); overflow-x: hidden; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:var(--sans); background:var(--dark); color:#F7F4EF; overflow-x:hidden; }
 
         /* NAVIGATION */
-        nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex;
-            align-items: center; justify-content: space-between; padding: 1rem 1.5rem;
-            background: rgba(8,8,8,0.95); transition: all .4s;
+        nav { 
+            position:fixed; top:0; width:100%; z-index:200; display:flex; 
+            justify-content:space-between; align-items:center; padding:1.2rem 1.5rem;
+            background:rgba(0,0,0,0.8); transition:0.4s;
         }
-        @media(min-width: 960px) {
-            nav { padding: 1.4rem 5rem; background: linear-gradient(to bottom,rgba(0,0,0,0.78),transparent); }
-            nav.scrolled { background: rgba(8,8,8,.97); padding: 1rem 5rem; border-bottom: .5px solid rgba(201,168,76,.18); }
-        }
+        @media(min-width: 960px) { nav { padding:1.5rem 5rem; background:transparent; } }
+        nav.scrolled { background:rgba(8,8,8,0.98); padding:1rem 5rem; }
+        .brand { font-family:var(--serif); color:var(--gold); font-size:1.5rem; text-transform:uppercase; letter-spacing:2px; }
 
-        .brand { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; letter-spacing: .1em; color: var(--gold); text-transform: uppercase; }
-        .nav-links { display: none; gap: 2.8rem; list-style: none; }
-        @media(min-width: 960px) { .nav-links { display: flex; } }
-        .nav-links a { font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: rgba(247,244,239,.72); text-decoration: none; }
-        .nav-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: .55rem 1.2rem; font-size: .68rem; text-transform: uppercase; cursor: pointer; }
-
-        /* HERO - PERFORMANCE FIX */
-        #hero { position: relative; height: 100vh; min-height: 600px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #000; }
-        .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 0.6; }
-        .hero-content { position: relative; z-index: 2; text-align: center; max-width: 900px; padding: 0 1.5rem; }
-        .h-title { font-family: var(--serif); font-size: clamp(2.5rem, 8vw, 5.8rem); font-weight: 300; line-height: 1.05; color: var(--white); margin-bottom: 1.6rem; }
-        .h-title em { font-style: italic; color: var(--gold-light); }
-        .h-sub { font-size: .9rem; color: rgba(247,244,239,.8); line-height: 1.6; margin-bottom: 2.5rem; }
-
-        /* BOOKING BAR - MOBILE FIX */
-        .bbar { background: var(--dark-2); border-y: 1px solid rgba(201,168,76,.2); padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
-        @media(min-width: 960px) {
-            .bbar { flex-direction: row; padding: 0 5rem; align-items: stretch; }
-        }
-        .bbar-label { font-size: .6rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); padding-right: 2rem; border-right: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; }
-        .bbar-fields { display: grid; grid-template-columns: 1fr 1fr; flex: 1; }
-        @media(max-width: 600px) { .bbar-fields { grid-template-columns: 1fr; } }
-        .bfield { padding: 1rem; border: 0.5px solid rgba(255,255,255,0.05); }
-        .bfield label { display: block; font-size: .5rem; color: var(--muted); text-transform: uppercase; margin-bottom: 5px; }
-        .bfield input, .bfield select { background: transparent; border: none; color: #fff; width: 100%; font-family: var(--sans); }
-
-        /* SECTIONS */
-        .sec { padding: 5rem 1.5rem; }
-        @media(min-width: 960px) { .sec { padding: 7rem 5rem; } }
-        .sec-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 300; color: var(--off-white); }
+        /* DYNAMIC HERO SECTION */
+        #hero { position:relative; height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden; background:#000; }
         
-        /* ROOMS GRID - MOBILE FIX */
-        .rooms-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
-        @media(min-width: 960px) {
-            .rooms-grid { grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 260px 260px; }
-            .rc:first-child { grid-row: span 2; }
-        }
-        .rc { position: relative; overflow: hidden; height: 300px; }
-        @media(min-width: 960px) { .rc { height: auto; } }
-        .rc-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: 0.7s; }
-        .rc:hover .rc-img { transform: scale(1.05); }
-        .rc-ov { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem; }
-
-        /* AMENITIES - MOBILE FIX */
-        #amenities { display: grid; grid-template-columns: 1fr; gap: 3rem; }
-        @media(min-width: 960px) { #amenities { grid-template-columns: 1fr 1fr; gap: 6rem; } }
-        .am-list { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
-        @media(min-width: 600px) { .am-list { grid-template-columns: 1fr 1fr; } }
-
-        /* BUTTONS */
-        .btn-gold { background: var(--gold); color: var(--dark); padding: 1rem 2rem; text-decoration: none; font-weight: 600; font-size: .7rem; text-transform: uppercase; display: inline-block; }
+        .hero-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; opacity:0.5; }
         
-        /* UTILS */
-        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s all ease; }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
+        /* Building image that fades in/out for movement */
+        .hero-slide {
+            position:absolute; inset:0; width:100%; height:100%;
+            background-size:cover; background-position:center;
+            z-index:1; opacity:0; transition:opacity 2s ease-in-out;
+            transform:scale(1.1); animation:kenburns 20s infinite alternate;
+        }
+        .hero-slide.active { opacity:0.4; }
+
+        @keyframes kenburns { from { transform:scale(1); } to { transform:scale(1.1); } }
+
+        .hero-content { position:relative; z-index:10; text-align:center; padding:0 1.5rem; }
+        .h-title { font-family:var(--serif); font-size:clamp(2.5rem, 8vw, 5rem); line-height:1.1; color:var(--white); }
+        .h-title em { color:var(--gold-light); font-style:italic; }
+
+        /* MOBILE RESPONSIVE GRIDS */
+        .sec { padding:4rem 1.5rem; }
+        @media(min-width: 960px) { .sec { padding:7rem 5rem; } }
+
+        .grid-2 { display:grid; grid-template-columns:1fr; gap:2rem; }
+        @media(min-width: 960px) { .grid-2 { grid-template-columns:1fr 1fr; } }
+
+        .rooms-grid { display:grid; grid-template-columns:1fr; gap:1rem; }
+        @media(min-width: 768px) { .rooms-grid { grid-template-columns:repeat(3, 1fr); } }
+
+        .btn-gold { background:var(--gold); color:var(--dark); padding:1rem 2rem; text-decoration:none; font-weight:600; display:inline-block; margin-top:2rem; text-transform:uppercase; font-size:0.8rem; }
+
+        /* REVEAL ON SCROLL */
+        .reveal { opacity:0; transform:translateY(30px); transition:1s all ease; }
+        .reveal.visible { opacity:1; transform:translateY(0); }
     </style>
 </head>
 <body>
 
     <nav id="nav">
-        <div class="brand">Kayriott <span style="font-size: .5rem; display: block; letter-spacing: .2em; color: var(--muted);">Hotel & Suites</span></div>
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#rooms">Rooms</a></li>
-            <li><a href="#amenities">Amenities</a></li>
-            <li><a href="#location">Location</a></li>
-        </ul>
-        <button class="nav-btn">Book Now</button>
+        <div class="brand">Kayriott</div>
+        <button class="btn-gold" style="margin:0; padding:0.5rem 1rem;">Book</button>
     </nav>
 
     <section id="hero">
         <video class="hero-video" autoplay muted loop playsinline>
             <source src="hero.mp4" type="video/mp4">
         </video>
+        <!-- The building movement layers -->
+        <div class="hero-slide active" style="background-image:url('hero-building.webp')"></div>
+        <div class="hero-slide" style="background-image:url('hero-side.webp')"></div>
+        
         <div class="hero-content">
             <h1 class="h-title">Where Comfort Meets<br><em>Refined Hospitality</em></h1>
-            <p class="h-sub">72 exquisitely appointed rooms & suites in the heart of Effurun-Warri.</p>
-            <a href="#rooms" class="btn-gold">Explore Rooms</a>
+            <p style="margin-top:1rem; color:rgba(255,255,255,0.7);">Km 3 Refinery Road, Effurun-Warri</p>
+            <a href="#rooms" class="btn-gold">View Our Rooms</a>
         </div>
     </section>
 
-    <div class="bbar">
-        <div class="bbar-label">Quick Reserve</div>
-        <div class="bbar-fields">
-            <div class="bfield"><label>Check In</label><input type="date" id="cin"></div>
-            <div class="bfield"><label>Check Out</label><input type="date" id="cout"></div>
-            <div class="bfield"><label>Guests</label>
-                <select>
-                    <option>1 Guest</option><option>2 Guests</option>
-                </select>
-            </div>
-            <button class="btn-gold" style="border:none; cursor:pointer;">Check Availablity</button>
-        </div>
-    </div>
-
-    <section id="about" class="sec reveal">
-        <div class="sec-label">Effurun–Warri</div>
-        <h2 class="sec-title">A Premier Destination in <em>Delta State</em></h2>
-        <p style="color: var(--muted); margin-top: 1.5rem; line-height: 1.8; max-width: 600px;">
-            Kayriott Hotel & Suites is Effurun-Warri's landmark of luxury. Every detail is designed to exceed expectations for business and leisure.
-        </p>
-    </section>
-
-    <section id="rooms" class="sec reveal" style="background: var(--dark-2);">
-        <h2 class="sec-title" style="margin-bottom: 2rem;">Our <em>Accommodations</em></h2>
-        <div class="rooms-grid">
-            <div class="rc">
-                <div class="rc-img" style="background-image: url('room1.jpg');"></div>
-                <div class="rc-ov">
-                    <div class="rc-type">Signature</div>
-                    <div class="rc-name">Presidential Suite</div>
-                    <div style="font-size: .8rem; color: var(--gold);">From ₦85,000 / night</div>
-                </div>
-            </div>
-            <div class="rc">
-                <div class="rc-img" style="background-image: url('room2.jpg');"></div>
-                <div class="rc-ov">
-                    <div class="rc-name">Executive Room</div>
-                    <div style="font-size: .8rem;">From ₦45,000</div>
-                </div>
-            </div>
-            <div class="rc">
-                <div class="rc-img" style="background-image: url('room3.jpg');"></div>
-                <div class="rc-ov">
-                    <div class="rc-name">Standard Room</div>
-                    <div style="font-size: .8rem;">From ₦22,000</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="amenities" class="sec reveal">
+    <section class="sec reveal grid-2">
         <div>
-            <h2 class="sec-title">Everything <em>You Need</em></h2>
-            <div class="am-list" style="margin-top: 2rem;">
-                <div class="am-item"><strong>🏊 Dual Pool</strong><p style="font-size: .8rem; color: var(--muted);">Two outdoor pools with sun deck.</p></div>
-                <div class="am-item"><strong>💆 Full Spa</strong><p style="font-size: .8rem; color: var(--muted);">Massage, steam room and sauna.</p></div>
-                <div class="am-item"><strong>🏋️ Gym</strong><p style="font-size: .8rem; color: var(--muted);">Fully equipped 24-hour fitness centre.</p></div>
-                <div class="am-item"><strong>🎤 Conference</strong><p style="font-size: .8rem; color: var(--muted);">350-seat hall for events.</p></div>
-            </div>
+            <h2 class="h-title" style="font-size:2.5rem;">Luxury <em>Poolside</em></h2>
+            <p style="margin-top:1.5rem; color:var(--muted); line-height:1.8;">Experience our dual pool complex, featuring a full-service bar and relaxation zones designed for the ultimate escape.</p>
         </div>
-        <div style="background: url('amenities.jpg') center/cover; min-height: 300px; border: 5px solid var(--dark-2);"></div>
+        <div style="background:url('pool-main.webp') center/cover; min-height:300px; border:10px solid var(--dark);"></div>
     </section>
 
-    <footer style="padding: 4rem 1.5rem; background: #060606; text-align: center; border-top: 1px solid rgba(201,168,76,0.1);">
-        <div class="brand">Kayriott</div>
-        <p style="font-size: .8rem; color: var(--muted); margin: 1rem 0;">Km 3 Refinery Road, Effurun-Warri, Delta State</p>
-        <p style="font-size: .7rem; color: #444;">© 2025 All Rights Reserved.</p>
-    </footer>
+    <section id="rooms" class="sec reveal" style="background:#111;">
+        <h2 class="h-title" style="font-size:2.5rem; margin-bottom:2rem;">Our <em>Suites</em></h2>
+        <div class="rooms-grid">
+            <div style="height:300px; background:url('hero-building.webp') center/cover;"><div style="padding:1rem; background:rgba(0,0,0,0.5); height:100%; display:flex; align-items:flex-end;">Presidential Suite</div></div>
+            <div style="height:300px; background:url('hero-side.webp') center/cover;"><div style="padding:1rem; background:rgba(0,0,0,0.5); height:100%; display:flex; align-items:flex-end;">Executive Room</div></div>
+            <div style="height:300px; background:url('pool-night.webp') center/cover;"><div style="padding:1rem; background:rgba(0,0,0,0.5); height:100%; display:flex; align-items:flex-end;">Standard Room</div></div>
+        </div>
+    </section>
 
     <script>
-        // Scroll Effect for Nav
-        const nav = document.getElementById('nav');
+        // Hero Movement Logic
+        const slides = document.querySelectorAll('.hero-slide');
+        let current = 0;
+        setInterval(() => {
+            slides[current].classList.remove('active');
+            current = (current + 1) % slides.length;
+            slides[current].classList.add('active');
+        }, 5000);
+
+        // Scroll & Reveal
         window.addEventListener('scroll', () => {
-            if(window.scrollY > 50) nav.classList.add('scrolled');
-            else nav.classList.remove('scrolled');
+            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // Reveal Animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+        });
+        document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
     </script>
 </body>
 </html>
