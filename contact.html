@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Kayriott Hotel & Suites in Effurun-Warri, Delta State. Call, email, or visit us for reservations and inquiries.">
+  <title>Kayriott Hotel & Suites | Contact Us</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: '#C9A84C',
+            'gold-light': '#E8C97A',
+            'gold-dark': '#A8882E',
+            ivory: '#F5F0E8',
+            'ivory-muted': '#C4BBAF',
+            midnight: '#0a0a0a',
+            'navy-dark': '#0d1117',
+            zinc: { 900: '#141414' },
+          },
+          fontFamily: {
+            display: ['Playfair Display', 'serif'],
+            body: ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-[200] transition-all duration-500">
+  <div class="max-w-7xl mx-auto px-5 lg:px-16 flex items-center justify-between py-4 lg:py-5">
+    <a href="index.html" class="nav-logo font-display text-2xl lg:text-3xl uppercase tracking-[0.1em] leading-none text-white">
+      Kayriott<span class="text-[#C9A84C]"> Hotel &amp; Suites</span>
+    </a>
+
+    <ul class="hidden xl:flex items-center gap-10 list-none">
+      <li><a href="index.html#about" class="nav-link">About Us</a></li>
+      <li><a href="rooms.html" class="nav-link">Rooms</a></li>
+      <li><a href="index.html#facilities" class="nav-link">Facilities</a></li>
+      <li><a href="index.html#conference" class="nav-link">Events</a></li>
+      <li><a href="index.html#location" class="nav-link">Location</a></li>
+    </ul>
+
+    <a href="booking.html" class="nav-cta hidden xl:inline-block bg-[#C9A84C] text-[#0a0a0a] rounded-full px-7 py-2.5 text-[0.6rem] tracking-[0.2em] uppercase font-semibold transition-all duration-300 hover:bg-[#E8C97A] hover:scale-[1.02]">Book Now</a>
+
+    <button class="mobile-toggle xl:hidden w-7 h-5 relative cursor-pointer z-200" id="mobileToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="absolute left-0 w-full h-[2px] bg-[#C9A84C] transition-all duration-300" style="top:0"></span>
+      <span class="absolute left-0 w-full h-[2px] bg-[#C9A84C] transition-all duration-300" style="top:9px"></span>
+      <span class="absolute left-0 w-full h-[2px] bg-[#C9A84C] transition-all duration-300" style="top:18px"></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-nav fixed top-0 left-0 right-0 bottom-0 bg-[rgba(0,0,0,0.97)] z-[190] flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-all duration-400 xl:hidden" id="mobileNav">
+  <a href="index.html#about" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">About Us</a>
+  <a href="rooms.html" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Rooms</a>
+  <a href="index.html#facilities" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Facilities</a>
+  <a href="index.html#conference" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Events</a>
+  <a href="index.html#location" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Location</a>
+  <a href="booking.html" class="bg-[#C9A84C] text-[#0a0a0a] rounded-full px-10 py-3 text-[0.65rem] tracking-[0.2em] uppercase font-semibold transition-all duration-300 hover:bg-[#E8C97A]" onclick="toggleMobileNav()">Book Now</a>
+</div>
+
+  <!-- PAGE HEADER -->
+  <section class="relative pt-40 pb-16 px-5 lg:px-16 text-center" style="background: linear-gradient(to bottom, #0a0a0a 0%, #141414 100%);">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="font-display text-4xl md:text-5xl lg:text-6xl text-ivory mb-4 reveal">Get In Touch</h1>
+      <div class="gold-divider w-24 mx-auto mb-6"></div>
+      <p class="font-body text-ivory/70 text-base md:text-lg max-w-2xl mx-auto reveal">We would love to hear from you. Reach out with questions, inquiries, or feedback.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="py-16 lg:py-24 px-5 lg:px-16 bg-midnight">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+
+        <!-- CONTACT FORM -->
+        <div class="frosted rounded-2xl p-8 md:p-10 reveal">
+          <h2 class="font-display text-2xl text-ivory mb-2">Send Us a Message</h2>
+          <div class="gold-divider w-12 mb-8"></div>
+          <form id="contactForm" class="space-y-5">
+            <div>
+              <label for="name" class="block font-body text-sm text-ivory/80 mb-1.5">Full Name <span class="text-gold">*</span></label>
+              <input type="text" id="name" name="name" required class="frosted-input w-full rounded-xl px-4 py-3 font-body text-sm placeholder:text-ivory/30" placeholder="Your name">
+            </div>
+            <div>
+              <label for="email" class="block font-body text-sm text-ivory/80 mb-1.5">Email Address <span class="text-gold">*</span></label>
+              <input type="email" id="email" name="email" required class="frosted-input w-full rounded-xl px-4 py-3 font-body text-sm placeholder:text-ivory/30" placeholder="your@email.com">
+            </div>
+            <div>
+              <label for="message" class="block font-body text-sm text-ivory/80 mb-1.5">Message <span class="text-gold">*</span></label>
+              <textarea id="message" name="message" rows="5" required class="frosted-input w-full rounded-xl px-4 py-3 font-body text-sm resize-none placeholder:text-ivory/30" placeholder="Your message..."></textarea>
+            </div>
+            <button type="submit" class="btn-gold-fill rounded-full px-10 py-3.5 font-body text-sm tracking-[0.2em] uppercase w-full">Send Message</button>
+          </form>
+        </div>
+
+        <!-- CONTACT INFO & MAP -->
+        <div class="space-y-8 reveal">
+          <div class="frosted rounded-2xl p-8 md:p-10">
+            <h2 class="font-display text-2xl text-ivory mb-2">Visit Us</h2>
+            <div class="gold-divider w-12 mb-6"></div>
+            <div class="space-y-5">
+              <div class="flex items-start gap-4">
+                <span class="text-gold text-lg mt-0.5">✦</span>
+                <div>
+                  <p class="font-body text-sm text-ivory/80 font-medium">Address</p>
+                  <p class="font-body text-sm text-ivory/60">Km 3 Refinery Road, Effurun-Warri<br>Delta State, Nigeria</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <span class="text-gold text-lg mt-0.5">✦</span>
+                <div>
+                  <p class="font-body text-sm text-ivory/80 font-medium">Phone</p>
+                  <p class="font-body text-sm text-ivory/60"><a href="tel:+2348087354890" class="hover:text-gold transition-colors">+234 808 735 4890</a></p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <span class="text-gold text-lg mt-0.5">✦</span>
+                <div>
+                  <p class="font-body text-sm text-ivory/80 font-medium">Email</p>
+                  <p class="font-body text-sm text-ivory/60"><a href="mailto:info@kayriotthotel.com" class="hover:text-gold transition-colors">info@kayriotthotel.com</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MAP PLACEHOLDER -->
+          <div class="frosted rounded-2xl overflow-hidden h-[250px] lg:h-[300px] flex items-center justify-center">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.123456789!2d5.783!3d5.516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMzAnNTcuNiJOIDXCsDQ2JzU4LjgiRQ!5e0!3m2!1sen!2sng" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Kayriott Hotel Location"></iframe>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+<footer class="bg-[#060606] pt-16 pb-8 px-5 lg:px-16">
+  <div class="max-w-7xl mx-auto">
+    <div class="footer-grid grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 lg:gap-16">
+      <div>
+        <a href="index.html" class="nav-logo font-display text-2xl lg:text-3xl uppercase tracking-[0.1em] leading-none text-white">
+          Kayriott<span class="text-[#C9A84C]"> Hotel &amp; Suites</span>
+        </a>
+        <p class="text-[#F5F0E8]/60 text-sm mt-4 leading-relaxed">Where comfort meets refined hospitality.</p>
+        <p class="text-[#F5F0E8]/40 text-xs mt-4 leading-relaxed">Km 3 Refinery Road, Effurun-Warri, Delta State, Nigeria</p>
+      </div>
+      <div>
+        <h4 class="font-display text-lg text-[#F5F0E8] mb-4">Navigate</h4>
+        <ul class="space-y-2.5 list-none">
+          <li><a href="index.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Home</a></li>
+          <li><a href="rooms.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Rooms</a></li>
+          <li><a href="gallery.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Gallery</a></li>
+          <li><a href="facilities.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Facilities</a></li>
+          <li><a href="contact.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-display text-lg text-[#F5F0E8] mb-4">Connect</h4>
+        <ul class="space-y-2.5 list-none">
+          <li><a href="contact.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Contact Us</a></li>
+          <li><a href="booking.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Book Now</a></li>
+          <li><a href="https://wa.me/2348087354890" target="_blank" rel="noopener noreferrer" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">WhatsApp</a></li>
+          <li><a href="#" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom border-t border-[#C9A84C] mt-12 pt-8 text-center">
+      <p class="text-[#F5F0E8]/30 text-[0.65rem] tracking-wider">&copy; 2025 Kayriott Hotel &amp; Suites. All Rights Reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/2348087354890" class="whatsapp-float fixed bottom-6 right-6 w-14 h-14 bg-[#25d366] rounded-full flex items-center justify-center z-[999] shadow-lg transition-transform duration-300 hover:scale-110" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" width="24" height="24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script>
+  // NAVBAR SCROLL EFFECT
+  const navbar = document.getElementById('navbar');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 80) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+
+  // MOBILE NAV TOGGLE
+  function toggleMobileNav() {
+    const nav = document.getElementById('mobileNav');
+    const toggle = document.getElementById('mobileToggle');
+    const isOpen = nav.classList.toggle('open');
+    toggle.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+
+  document.getElementById('mobileToggle').addEventListener('click', toggleMobileNav);
+
+  // SCROLL REVEAL (IntersectionObserver)
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>
