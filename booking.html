@@ -32,6 +32,23 @@
     }
   </script>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .step-indicator { text-align: center; cursor: default; }
+    .step-indicator .step-circle { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 600; border: 2px solid rgba(255,255,255,0.2); background: transparent; color: rgba(255,255,255,0.4); transition: all 0.3s; margin: 0 auto; }
+    .step-indicator.active .step-circle { border-color: #C9A84C; background: #C9A84C; color: #0a0a0a; }
+    .step-indicator.completed .step-circle { border-color: #C9A84C; background: transparent; color: #C9A84C; }
+    .step-indicator .step-label { display: block; font-size: 0.5rem; letter-spacing: 0.2em; text-transform: uppercase; margin-top: 0.5rem; color: rgba(255,255,255,0.4); transition: color 0.3s; }
+    .step-indicator.active .step-label { color: #C9A84C; }
+    .step-indicator.completed .step-label { color: #C9A84C; }
+    .step-line { background: rgba(255,255,255,0.2); transition: background 0.3s; }
+    .step-line.completed { background: #C9A84C; }
+    .booking-step { transition: opacity 0.3s ease; }
+    .wizard-btn { transition: all 0.3s; cursor: pointer; }
+    .wizard-btn:hover:not(:disabled) { transform: scale(1.02); }
+    .wizard-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .price-breakdown { border-top: 1px solid rgba(201,168,76,0.2); padding-top: 1rem; }
+    .price-row { display: flex; justify-content: space-between; padding: 0.35rem 0; font-size: 0.875rem; }
+  </style>
 </head>
 <body>
 
@@ -42,11 +59,12 @@
     </a>
 
     <ul class="hidden xl:flex items-center gap-10 list-none">
-      <li><a href="index.html#about" class="nav-link">About Us</a></li>
+      <li><a href="index.html" class="nav-link">Home</a></li>
       <li><a href="rooms.html" class="nav-link">Rooms</a></li>
-      <li><a href="index.html#facilities" class="nav-link">Facilities</a></li>
-      <li><a href="index.html#conference" class="nav-link">Events</a></li>
-      <li><a href="index.html#location" class="nav-link">Location</a></li>
+      <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+      <li><a href="facilities.html" class="nav-link">Facilities</a></li>
+      <li><a href="contact.html#events" class="nav-link">Events</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
     </ul>
 
     <a href="booking.html" class="nav-cta hidden xl:inline-block bg-[#C9A84C] text-[#0a0a0a] rounded-full px-7 py-2.5 text-[0.6rem] tracking-[0.2em] uppercase font-semibold transition-all duration-300 hover:bg-[#E8C97A] hover:scale-[1.02]">Book Now</a>
@@ -60,16 +78,17 @@
 </nav>
 
 <div class="mobile-nav fixed top-0 left-0 right-0 bottom-0 bg-[rgba(0,0,0,0.97)] z-[190] flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-all duration-400 xl:hidden" id="mobileNav">
-  <a href="index.html#about" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">About Us</a>
+  <a href="index.html" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Home</a>
   <a href="rooms.html" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Rooms</a>
-  <a href="index.html#facilities" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Facilities</a>
-  <a href="index.html#conference" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Events</a>
-  <a href="index.html#location" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Location</a>
+  <a href="gallery.html" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Gallery</a>
+  <a href="facilities.html" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Facilities</a>
+  <a href="contact.html#events" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Events</a>
+  <a href="contact.html" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Contact</a>
   <a href="booking.html" class="bg-[#C9A84C] text-[#0a0a0a] rounded-full px-10 py-3 text-[0.65rem] tracking-[0.2em] uppercase font-semibold transition-all duration-300 hover:bg-[#E8C97A]" onclick="toggleMobileNav()">Book Now</a>
 </div>
 
   <!-- PAGE HEADER -->
-  <section class="relative pt-40 pb-16 px-5 lg:px-16 text-center" style="background: linear-gradient(to bottom, #0a0a0a 0%, #141414 100%);">
+  <section class="relative pt-40 pb-8 px-5 lg:px-16 text-center" style="background: linear-gradient(to bottom, #0a0a0a 0%, #141414 100%);">
     <div class="max-w-4xl mx-auto">
       <h1 class="font-display text-4xl md:text-5xl lg:text-6xl text-ivory mb-4 reveal">Reserve Your Stay</h1>
       <div class="gold-divider w-24 mx-auto mb-6"></div>
@@ -77,61 +96,135 @@
     </div>
   </section>
 
-  <!-- BOOKING FORM -->
+  <!-- BOOKING WIZARD -->
   <section class="px-5 lg:px-16 pb-24" style="background: linear-gradient(to bottom, #141414 0%, #0a0a0a 100%);">
     <div class="max-w-3xl mx-auto">
+
+      <!-- STEP INDICATOR -->
+      <div class="flex items-center justify-center gap-2 md:gap-4 mb-10 reveal" id="stepIndicator">
+        <div class="step-indicator active" data-step="1">
+          <div class="step-circle">1</div>
+          <span class="step-label">Details</span>
+        </div>
+        <div class="step-line w-12 md:w-20 h-[1px]" data-line="1"></div>
+        <div class="step-indicator" data-step="2">
+          <div class="step-circle">2</div>
+          <span class="step-label">Reservation</span>
+        </div>
+        <div class="step-line w-12 md:w-20 h-[1px]" data-line="2"></div>
+        <div class="step-indicator" data-step="3">
+          <div class="step-circle">3</div>
+          <span class="step-label">Confirm</span>
+        </div>
+      </div>
+
+      <!-- FORM STEPS -->
       <div class="frosted rounded-2xl p-8 md:p-12 reveal">
-        <form id="bookingForm" class="space-y-6">
-          <div>
-            <label for="fullName" class="block font-body text-sm text-ivory/80 mb-2">Full Name <span class="text-gold">*</span></label>
-            <input type="text" id="fullName" name="fullName" required class="frosted-input w-full rounded-lg px-4 py-3 font-body text-sm placeholder:text-ivory/30" placeholder="John Doe">
-          </div>
+        <form id="bookingForm" onsubmit="return submitBooking(event)">
 
-          <div>
-            <label for="email" class="block font-body text-sm text-ivory/80 mb-2">Email Address <span class="text-gold">*</span></label>
-            <input type="email" id="email" name="email" required class="frosted-input w-full rounded-lg px-4 py-3 font-body text-sm placeholder:text-ivory/30" placeholder="john@example.com">
-          </div>
-
-          <div>
-            <label for="phone" class="block font-body text-sm text-ivory/80 mb-2">Phone Number <span class="text-gold">*</span></label>
-            <input type="tel" id="phone" name="phone" required class="frosted-input w-full rounded-lg px-4 py-3 font-body text-sm placeholder:text-ivory/30" placeholder="+234 800 000 0000">
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label for="checkIn" class="block font-body text-sm text-ivory/80 mb-2">Check-In Date <span class="text-gold">*</span></label>
-              <input type="date" id="checkIn" name="checkIn" required class="frosted-input w-full rounded-lg px-4 py-3 font-body text-sm">
+          <!-- STEP 1: PERSONAL DETAILS -->
+          <div class="booking-step" id="step1">
+            <h3 class="font-display text-2xl text-ivory mb-6">Personal Details</h3>
+            <div class="space-y-5">
+              <div>
+                <label for="fullName" class="block font-body text-sm text-ivory/80 mb-2">Full Name <span class="text-gold">*</span></label>
+                <input type="text" id="fullName" name="fullName" required class="frosted-input w-full rounded-lg px-4 py-3 font-body text-sm placeholder:text-ivory/30" placeholder="John Doe">
+              </div>
+              <div>
+                <label for="email" class="block font-body text-sm text-ivory/80 mb-2">Email Address <span class="text-gold">*</span></label>
+                <input type="email" id="email" name="email" required class="frosted-input w-full rounded-lg px-4 py-3 font-body text-sm placeholder:text-ivory/30" placeholder="john@example.com">
+              </div>
+              <div>
+                <label for="phone" class="block font-body text-sm text-ivory/80 mb-2">Phone Number <span class="text-gold">*</span></label>
+                <input type="tel" id="phone" name="phone" required class="frosted-input w-full rounded-lg px-4 py-3 font-body text-sm placeholder:text-ivory/30" placeholder="+234 800 000 0000">
+              </div>
             </div>
-            <div>
-              <label for="checkOut" class="block font-body text-sm text-ivory/80 mb-2">Check-Out Date <span class="text-gold">*</span></label>
-              <input type="date" id="checkOut" name="checkOut" required class="frosted-input w-full rounded-lg px-4 py-3 font-body text-sm">
+            <div class="flex justify-end mt-8">
+              <button type="button" onclick="nextStep()" class="wizard-btn btn-gold-fill rounded-full px-10 py-3 text-[0.6rem] tracking-[0.2em] uppercase font-semibold">Next Step</button>
             </div>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label for="guests" class="block font-body text-sm text-ivory/80 mb-2">Number of Guests <span class="text-gold">*</span></label>
-              <input type="number" id="guests" name="guests" min="1" value="1" required class="frosted-input w-full rounded-lg px-4 py-3 font-body text-sm">
+          <!-- STEP 2: RESERVATION DETAILS -->
+          <div class="booking-step hidden" id="step2">
+            <h3 class="font-display text-2xl text-ivory mb-6">Reservation Details</h3>
+            <div class="space-y-5">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div>
+                  <label for="checkIn" class="block font-body text-sm text-ivory/80 mb-2">Check-In <span class="text-gold">*</span></label>
+                  <input type="date" id="checkIn" name="checkIn" required class="frosted-input w-full rounded-lg px-4 py-3 font-body text-sm" onchange="updateNights()">
+                </div>
+                <div>
+                  <label for="checkOut" class="block font-body text-sm text-ivory/80 mb-2">Check-Out <span class="text-gold">*</span></label>
+                  <input type="date" id="checkOut" name="checkOut" required class="frosted-input w-full rounded-lg px-4 py-3 font-body text-sm" onchange="updateNights()">
+                </div>
+              </div>
+              <div id="nightsDisplay" class="text-ivory/60 text-xs tracking-wider uppercase hidden">Total Stay: <span id="nightCount">0</span> night(s)</div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div>
+                  <label for="guests" class="block font-body text-sm text-ivory/80 mb-2">Guests <span class="text-gold">*</span></label>
+                  <input type="number" id="guests" name="guests" min="1" max="10" value="1" required class="frosted-input w-full rounded-lg px-4 py-3 font-body text-sm">
+                </div>
+                <div>
+                  <label for="roomType" class="block font-body text-sm text-ivory/80 mb-2">Room Type <span class="text-gold">*</span></label>
+                  <select id="roomType" name="roomType" required class="frosted-input w-full rounded-lg px-4 py-3 font-body text-sm" onchange="updateNights()">
+                    <option value="" disabled selected>Select a room</option>
+                    <option value="standard">Standard Room — ₦22,000/night</option>
+                    <option value="executive">Executive Room — ₦45,000/night</option>
+                    <option value="presidential">Presidential Suite — ₦85,000/night</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label for="requests" class="block font-body text-sm text-ivory/80 mb-2">Special Requests <span class="text-ivory/40">(optional)</span></label>
+                <textarea id="requests" name="requests" rows="3" class="frosted-input w-full rounded-lg px-4 py-3 font-body text-sm resize-none placeholder:text-ivory/30" placeholder="Any special requests..."></textarea>
+              </div>
             </div>
-            <div>
-              <label for="roomType" class="block font-body text-sm text-ivory/80 mb-2">Room Type <span class="text-gold">*</span></label>
-              <select id="roomType" name="roomType" required class="frosted-input w-full rounded-lg px-4 py-3 font-body text-sm">
-                <option value="" disabled selected>Select a room</option>
-                <option value="standard">Standard Room</option>
-                <option value="executive">Executive Room</option>
-                <option value="presidential">Presidential Suite</option>
-              </select>
+            <div class="flex justify-between mt-8">
+              <button type="button" onclick="prevStep()" class="wizard-btn btn-gold-outline rounded-full px-10 py-3 text-[0.6rem] tracking-[0.2em] uppercase font-semibold">Back</button>
+              <button type="button" onclick="nextStep()" class="wizard-btn btn-gold-fill rounded-full px-10 py-3 text-[0.6rem] tracking-[0.2em] uppercase font-semibold">Review Booking</button>
             </div>
           </div>
 
-          <div>
-            <label for="requests" class="block font-body text-sm text-ivory/80 mb-2">Special Requests <span class="text-ivory/40">(optional)</span></label>
-            <textarea id="requests" name="requests" rows="4" class="frosted-input w-full rounded-lg px-4 py-3 font-body text-sm resize-none placeholder:text-ivory/30" placeholder="Any special requests..."></textarea>
+          <!-- STEP 3: CONFIRMATION -->
+          <div class="booking-step hidden" id="step3">
+            <h3 class="font-display text-2xl text-ivory mb-6">Confirm Your Booking</h3>
+            <div id="summaryContent" class="space-y-6">
+              <div class="bg-black/30 rounded-xl p-5 space-y-3">
+                <h4 class="text-gold text-[0.55rem] tracking-[0.2em] uppercase font-semibold">Personal Details</h4>
+                <div class="text-ivory/80 text-sm space-y-1">
+                  <p><span class="text-ivory/40">Name:</span> <span id="summaryName">—</span></p>
+                  <p><span class="text-ivory/40">Email:</span> <span id="summaryEmail">—</span></p>
+                  <p><span class="text-ivory/40">Phone:</span> <span id="summaryPhone">—</span></p>
+                </div>
+              </div>
+              <div class="bg-black/30 rounded-xl p-5 space-y-3">
+                <h4 class="text-gold text-[0.55rem] tracking-[0.2em] uppercase font-semibold">Reservation Details</h4>
+                <div class="text-ivory/80 text-sm space-y-1">
+                  <p><span class="text-ivory/40">Check-In:</span> <span id="summaryCheckIn">—</span></p>
+                  <p><span class="text-ivory/40">Check-Out:</span> <span id="summaryCheckOut">—</span></p>
+                  <p><span class="text-ivory/40">Guests:</span> <span id="summaryGuests">—</span></p>
+                  <p><span class="text-ivory/40">Room:</span> <span id="summaryRoom">—</span></p>
+                </div>
+              </div>
+              <div class="bg-black/30 rounded-xl p-5 space-y-3">
+                <h4 class="text-gold text-[0.55rem] tracking-[0.2em] uppercase font-semibold">Price Breakdown</h4>
+                <div class="text-ivory/80 text-sm space-y-1">
+                  <div class="price-row"><span>Room Rate</span><span id="summaryRate">—</span></div>
+                  <div class="price-row"><span>Nights</span><span id="summaryNights">—</span></div>
+                  <div class="price-row text-gold font-semibold"><span>Total</span><span id="summaryTotal">—</span></div>
+                </div>
+              </div>
+              <div class="bg-black/30 rounded-xl p-5 space-y-3">
+                <h4 class="text-gold text-[0.55rem] tracking-[0.2em] uppercase font-semibold">Special Requests</h4>
+                <p class="text-ivory/60 text-sm italic" id="summaryRequests">None</p>
+              </div>
+            </div>
+            <div class="flex justify-between mt-8">
+              <button type="button" onclick="prevStep()" class="wizard-btn btn-gold-outline rounded-full px-10 py-3 text-[0.6rem] tracking-[0.2em] uppercase font-semibold">Back</button>
+              <button type="submit" class="wizard-btn btn-gold-fill rounded-full px-10 py-3 text-[0.6rem] tracking-[0.2em] uppercase font-semibold">Confirm &amp; Book</button>
+            </div>
           </div>
 
-          <div class="text-center pt-4">
-            <button type="submit" class="btn-gold-fill rounded-full px-14 py-3.5 font-body text-sm tracking-[0.2em] uppercase">Complete Booking</button>
-          </div>
         </form>
       </div>
     </div>
@@ -181,38 +274,246 @@
 
 <script>
   // NAVBAR SCROLL EFFECT
-  const navbar = document.getElementById('navbar');
-
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 80) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
+  (function() {
+    const navbar = document.getElementById('navbar');
+    if (navbar) {
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 80) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
     }
-  });
+  })();
 
   // MOBILE NAV TOGGLE
   function toggleMobileNav() {
     const nav = document.getElementById('mobileNav');
     const toggle = document.getElementById('mobileToggle');
+    if (!nav || !toggle) return;
     const isOpen = nav.classList.toggle('open');
     toggle.classList.toggle('open');
     toggle.setAttribute('aria-expanded', isOpen);
     document.body.style.overflow = isOpen ? 'hidden' : '';
   }
 
-  document.getElementById('mobileToggle').addEventListener('click', toggleMobileNav);
+  document.addEventListener('DOMContentLoaded', function() {
+    const toggle = document.getElementById('mobileToggle');
+    if (toggle) toggle.addEventListener('click', toggleMobileNav);
+  });
 
   // SCROLL REVEAL (IntersectionObserver)
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
+  (function() {
+    const revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(function(el) { revealObserver.observe(el); });
+  })();
 
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  // === BOOKING WIZARD ===
+
+  var currentStep = 1;
+
+  var roomPrices = {
+    standard: 22000,
+    executive: 45000,
+    presidential: 85000
+  };
+
+  var roomLabels = {
+    standard: 'Standard Room',
+    executive: 'Executive Room',
+    presidential: 'Presidential Suite'
+  };
+
+  function goToStep(step) {
+    document.querySelectorAll('.booking-step').forEach(function(el) { el.classList.add('hidden'); });
+    var target = document.getElementById('step' + step);
+    if (target) target.classList.remove('hidden');
+
+    document.querySelectorAll('.step-indicator').forEach(function(el) {
+      el.classList.remove('active', 'completed');
+      var s = parseInt(el.getAttribute('data-step'));
+      if (s === step) el.classList.add('active');
+      else if (s < step) el.classList.add('completed');
+    });
+
+    document.querySelectorAll('.step-line').forEach(function(el) {
+      var s = parseInt(el.getAttribute('data-line'));
+      if (s < step) el.classList.add('completed');
+      else el.classList.remove('completed');
+    });
+
+    currentStep = step;
+    window.scrollTo({ top: document.getElementById('stepIndicator').offsetTop - 120, behavior: 'smooth' });
+  }
+
+  function nextStep() {
+    if (currentStep === 1) {
+      var name = document.getElementById('fullName').value.trim();
+      var email = document.getElementById('email').value.trim();
+      var phone = document.getElementById('phone').value.trim();
+      if (!name || !email || !phone) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+      if (!email.includes('@')) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+    }
+    if (currentStep === 2) {
+      var checkIn = document.getElementById('checkIn').value;
+      var checkOut = document.getElementById('checkOut').value;
+      var guests = document.getElementById('guests').value;
+      var roomType = document.getElementById('roomType').value;
+      if (!checkIn || !checkOut || !guests || !roomType) {
+        alert('Please fill in all reservation details.');
+        return;
+      }
+      var nights = calcNights();
+      if (nights < 1) {
+        alert('Check-Out must be after Check-In.');
+        return;
+      }
+      updateSummary();
+    }
+    if (currentStep < 3) goToStep(currentStep + 1);
+  }
+
+  function prevStep() {
+    if (currentStep > 1) goToStep(currentStep - 1);
+  }
+
+  function calcNights() {
+    var ci = document.getElementById('checkIn').value;
+    var co = document.getElementById('checkOut').value;
+    if (!ci || !co) return 0;
+    var d1 = new Date(ci + 'T00:00:00');
+    var d2 = new Date(co + 'T00:00:00');
+    var diff = (d2 - d1) / (1000 * 60 * 60 * 24);
+    return Math.max(0, Math.round(diff));
+  }
+
+  function updateNights() {
+    var nights = calcNights();
+    var display = document.getElementById('nightsDisplay');
+    var count = document.getElementById('nightCount');
+    if (nights > 0) {
+      display.classList.remove('hidden');
+      count.textContent = nights;
+    } else {
+      display.classList.add('hidden');
+    }
+  }
+
+  function calcTotal() {
+    var nights = calcNights();
+    var room = document.getElementById('roomType').value;
+    var rate = roomPrices[room] || 0;
+    return { nights: nights, rate: rate, total: nights * rate };
+  }
+
+  function formatDate(dateStr) {
+    if (!dateStr) return '—';
+    var d = new Date(dateStr + 'T00:00:00');
+    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return d.toLocaleDateString('en-US', options);
+  }
+
+  function formatCurrency(amount) {
+    return '₦' + Number(amount).toLocaleString();
+  }
+
+  function updateSummary() {
+    var name = document.getElementById('fullName').value.trim();
+    var email = document.getElementById('email').value.trim();
+    var phone = document.getElementById('phone').value.trim();
+    var checkIn = document.getElementById('checkIn').value;
+    var checkOut = document.getElementById('checkOut').value;
+    var guests = document.getElementById('guests').value;
+    var room = document.getElementById('roomType').value;
+    var requests = document.getElementById('requests').value.trim();
+
+    var pricing = calcTotal();
+
+    document.getElementById('summaryName').textContent = name || '—';
+    document.getElementById('summaryEmail').textContent = email || '—';
+    document.getElementById('summaryPhone').textContent = phone || '—';
+    document.getElementById('summaryCheckIn').textContent = formatDate(checkIn);
+    document.getElementById('summaryCheckOut').textContent = formatDate(checkOut);
+    document.getElementById('summaryGuests').textContent = guests || '—';
+    document.getElementById('summaryRoom').textContent = roomLabels[room] || '—';
+    document.getElementById('summaryRate').textContent = room ? formatCurrency(roomPrices[room]) + ' / night' : '—';
+    document.getElementById('summaryNights').textContent = pricing.nights + ' night(s)';
+    document.getElementById('summaryTotal').textContent = formatCurrency(pricing.total);
+    document.getElementById('summaryRequests').textContent = requests || 'None';
+  }
+
+  function setMinDates() {
+    var today = new Date();
+    var yyyy = today.getFullYear();
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var dd = String(today.getDate()).padStart(2, '0');
+    var min = yyyy + '-' + mm + '-' + dd;
+
+    var ci = document.getElementById('checkIn');
+    var co = document.getElementById('checkOut');
+    if (ci) {
+      ci.setAttribute('min', min);
+      ci.value = ci.value || min;
+    }
+    if (co) {
+      co.setAttribute('min', min);
+      co.value = co.value || yyyy + '-' + mm + '-' + String(parseInt(dd) + 1).padStart(2, '0');
+    }
+  }
+
+  function submitBooking(e) {
+    e.preventDefault();
+
+    var name = document.getElementById('fullName').value.trim();
+    var email = document.getElementById('email').value.trim();
+    var phone = document.getElementById('phone').value.trim();
+    var checkIn = document.getElementById('checkIn').value;
+    var checkOut = document.getElementById('checkOut').value;
+    var guests = document.getElementById('guests').value;
+    var room = document.getElementById('roomType').value;
+    var requests = document.getElementById('requests').value.trim();
+    var pricing = calcTotal();
+
+    var message = 'Hi Kayriott Hotel! I would like to make a booking.%0A%0A' +
+      '--- PERSONAL DETAILS ---%0A' +
+      'Name: ' + name + '%0A' +
+      'Email: ' + email + '%0A' +
+      'Phone: ' + phone + '%0A%0A' +
+      '--- RESERVATION ---%0A' +
+      'Check-In: ' + formatDate(checkIn) + '%0A' +
+      'Check-Out: ' + formatDate(checkOut) + '%0A' +
+      'Guests: ' + guests + '%0A' +
+      'Room: ' + (roomLabels[room] || room) + '%0A%0A' +
+      '--- PRICING ---%0A' +
+      'Rate: ' + formatCurrency(pricing.rate) + '/night%0A' +
+      'Nights: ' + pricing.nights + '%0A' +
+      'Total: ' + formatCurrency(pricing.total) + '%0A%0A';
+
+    if (requests) message += 'Special Requests: ' + requests + '%0A%0A';
+
+    message += 'Looking forward to your confirmation!';
+
+    window.open('https://wa.me/2348087354890?text=' + message, '_blank');
+    return false;
+  }
+
+  // INIT
+  document.addEventListener('DOMContentLoaded', function() {
+    setMinDates();
+  });
 </script>
 </body>
 </html>

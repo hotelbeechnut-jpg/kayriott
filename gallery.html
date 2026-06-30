@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Browse the Kayriott Hotel & Suites gallery — rooms, amenities, and dining in Effurun-Warri, Delta State.">
-  <title>Kayriott Hotel & Suites | Gallery</title>
+  <meta name="description" content="Explore Kayriott Hotel & Suites through our gallery — rooms, pool, reception, dining, and more.">
+  <title>Gallery — Kayriott Hotel & Suites</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -32,189 +32,504 @@
     }
   </script>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .page-hero {
+      position: relative;
+      height: 50vh;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #0a0a0a;
+    }
+    .page-hero .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+    }
+    .page-hero .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 1.25rem;
+    }
+    .filter-btn {
+      padding: 0.625rem 1.5rem;
+      border-radius: 9999px;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 500;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.3s;
+      background: transparent;
+      color: rgba(245, 240, 232, 0.7);
+    }
+    .filter-btn:hover {
+      border-color: #C9A84C;
+      color: #C9A84C;
+    }
+    .filter-btn.active {
+      background: #C9A84C;
+      color: #0a0a0a;
+      border-color: #C9A84C;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 640px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+      cursor: pointer;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      display: block;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    .gallery-item .placeholder-img {
+      width: 100%;
+      height: 260px;
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #C9A84C;
+      font-style: italic;
+      font-size: 0.9rem;
+      font-family: 'Playfair Display', serif;
+    }
+    .gallery-item .caption-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem 1rem 1rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+    }
+    .gallery-item .caption-overlay span {
+      color: #F5F0E8;
+      font-size: 0.85rem;
+      font-family: 'Playfair Display', serif;
+    }
+    .gallery-item .category-badge {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      background: #C9A84C;
+      color: #0a0a0a;
+      font-size: 0.5rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-weight: 600;
+    }
+    .hidden-item { display: none; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .gallery-item.visible-item { animation: fadeInUp 0.3s ease forwards; }
+    #lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    #lightbox.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 0.5rem;
+      object-fit: contain;
+    }
+    #lightbox .lb-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      background: none;
+      border: none;
+      color: #C9A84C;
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 10;
+      line-height: 1;
+    }
+    #lightbox .lb-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #C9A84C;
+      font-size: 2.5rem;
+      cursor: pointer;
+      padding: 1rem;
+      z-index: 10;
+      transition: opacity 0.3s;
+      opacity: 0.7;
+    }
+    #lightbox .lb-arrow:hover { opacity: 1; }
+    #lightbox .lb-prev { left: 1rem; }
+    #lightbox .lb-next { right: 1rem; }
+    @media (max-width: 767px) {
+      #lightbox .lb-close { top: 1rem; right: 1rem; font-size: 1.5rem; }
+      #lightbox .lb-arrow { font-size: 1.5rem; padding: 0.5rem; }
+      #lightbox .lb-prev { left: 0.5rem; }
+      #lightbox .lb-next { right: 0.5rem; }
+    }
+    .mobile-toggle.open span:nth-child(1) { top: 9px !important; transform: rotate(45deg); }
+    .mobile-toggle.open span:nth-child(2) { opacity: 0; }
+    .mobile-toggle.open span:nth-child(3) { top: 9px !important; transform: rotate(-45deg); }
+    @media (max-width: 767px) {
+      .mobile-nav a { color: #F5F0E8; text-decoration: none; font-size: 1.2rem; letter-spacing: 0.2em; text-transform: uppercase; font-family: 'Playfair Display', serif; }
+      .mobile-nav a:hover { color: #C9A84C; }
+    }
+  </style>
 </head>
 <body>
 
-<nav id="navbar" class="fixed top-0 left-0 right-0 z-[200] transition-all duration-500">
-  <div class="max-w-7xl mx-auto px-5 lg:px-16 flex items-center justify-between py-4 lg:py-5">
-    <a href="index.html" class="nav-logo font-display text-2xl lg:text-3xl uppercase tracking-[0.1em] leading-none text-white">
-      Kayriott<span class="text-[#C9A84C]"> Hotel &amp; Suites</span>
-    </a>
+  <!-- NAVBAR -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-[200] transition-all duration-500">
+    <div class="max-w-7xl mx-auto px-5 lg:px-16 flex items-center justify-between py-4 lg:py-5">
+      <a href="index.html" class="nav-logo font-display text-2xl lg:text-3xl uppercase tracking-[0.1em] leading-none text-white">
+        Kayriott<span class="text-[#C9A84C]"> Hotel &amp; Suites</span>
+      </a>
 
-    <ul class="hidden xl:flex items-center gap-10 list-none">
-      <li><a href="index.html#about" class="nav-link">About Us</a></li>
-      <li><a href="rooms.html" class="nav-link">Rooms</a></li>
-      <li><a href="index.html#facilities" class="nav-link">Facilities</a></li>
-      <li><a href="index.html#conference" class="nav-link">Events</a></li>
-      <li><a href="index.html#location" class="nav-link">Location</a></li>
-    </ul>
+      <ul class="hidden xl:flex items-center gap-10 list-none">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="rooms.html" class="nav-link">Rooms</a></li>
+        <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
+        <li><a href="facilities.html" class="nav-link">Facilities</a></li>
+        <li><a href="contact.html#events" class="nav-link">Events</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
 
-    <a href="booking.html" class="nav-cta hidden xl:inline-block bg-[#C9A84C] text-[#0a0a0a] rounded-full px-7 py-2.5 text-[0.6rem] tracking-[0.2em] uppercase font-semibold transition-all duration-300 hover:bg-[#E8C97A] hover:scale-[1.02]">Book Now</a>
+      <a href="booking.html" class="nav-cta hidden xl:inline-block bg-[#C9A84C] text-[#0a0a0a] rounded-full px-7 py-2.5 text-[0.6rem] tracking-[0.2em] uppercase font-semibold transition-all duration-300 hover:bg-[#E8C97A] hover:scale-[1.02]">Book Now</a>
 
-    <button class="mobile-toggle xl:hidden w-7 h-5 relative cursor-pointer z-200" id="mobileToggle" aria-label="Toggle menu" aria-expanded="false">
-      <span class="absolute left-0 w-full h-[2px] bg-[#C9A84C] transition-all duration-300" style="top:0"></span>
-      <span class="absolute left-0 w-full h-[2px] bg-[#C9A84C] transition-all duration-300" style="top:9px"></span>
-      <span class="absolute left-0 w-full h-[2px] bg-[#C9A84C] transition-all duration-300" style="top:18px"></span>
-    </button>
+      <button class="mobile-toggle xl:hidden w-7 h-5 relative cursor-pointer z-200" id="mobileToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span class="absolute left-0 w-full h-[2px] bg-[#C9A84C] transition-all duration-300" style="top:0"></span>
+        <span class="absolute left-0 w-full h-[2px] bg-[#C9A84C] transition-all duration-300" style="top:9px"></span>
+        <span class="absolute left-0 w-full h-[2px] bg-[#C9A84C] transition-all duration-300" style="top:18px"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-nav fixed top-0 left-0 right-0 bottom-0 bg-[rgba(0,0,0,0.97)] z-[190] flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-all duration-400 xl:hidden" id="mobileNav">
+    <a href="index.html" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Home</a>
+    <a href="rooms.html" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Rooms</a>
+    <a href="gallery.html" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Gallery</a>
+    <a href="facilities.html" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Facilities</a>
+    <a href="contact.html#events" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Events</a>
+    <a href="contact.html" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Contact</a>
+    <a href="booking.html" class="bg-[#C9A84C] text-[#0a0a0a] rounded-full px-10 py-3 text-[0.65rem] tracking-[0.2em] uppercase font-semibold transition-all duration-300 hover:bg-[#E8C97A]" onclick="toggleMobileNav()">Book Now</a>
   </div>
-</nav>
 
-<div class="mobile-nav fixed top-0 left-0 right-0 bottom-0 bg-[rgba(0,0,0,0.97)] z-[190] flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-all duration-400 xl:hidden" id="mobileNav">
-  <a href="index.html#about" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">About Us</a>
-  <a href="rooms.html" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Rooms</a>
-  <a href="index.html#facilities" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Facilities</a>
-  <a href="index.html#conference" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Events</a>
-  <a href="index.html#location" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Location</a>
-  <a href="booking.html" class="bg-[#C9A84C] text-[#0a0a0a] rounded-full px-10 py-3 text-[0.65rem] tracking-[0.2em] uppercase font-semibold transition-all duration-300 hover:bg-[#E8C97A]" onclick="toggleMobileNav()">Book Now</a>
-</div>
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="hero-bg" style="background-image:url('lobby-view.webp')" alt="Kayriott Hotel Gallery"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-label inline-block text-gold text-[0.55rem] md:text-[0.65rem] tracking-[0.4em] uppercase font-medium mb-5">✦ Photo Gallery</span>
+      <h1 class="font-display text-4xl md:text-6xl lg:text-7xl leading-[1.1] text-white">Our Hotel in Pictures</h1>
+    </div>
+  </section>
 
-  <!-- PAGE HEADER -->
-  <section class="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-midnight">
-    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-midnight z-10"></div>
-    <div class="relative z-20 text-center px-5 max-w-4xl mx-auto reveal">
-      <span class="text-gold text-[0.55rem] tracking-[0.4em] uppercase font-medium">Explore</span>
-      <h1 class="font-display text-4xl md:text-6xl lg:text-7xl text-ivory mt-3 font-light leading-tight">
-        Our <em class="text-gold not-italic">Gallery</em>
-      </h1>
-      <div class="gold-divider w-20 mx-auto mt-5"></div>
-      <p class="text-ivory/70 text-sm md:text-base mt-5 max-w-2xl mx-auto">A visual journey through the elegance and comfort that define Kayriott Hotel &amp; Suites.</p>
+  <!-- FILTER BAR -->
+  <section class="gallery-filters bg-navy-dark py-8 px-5 lg:px-16">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-3">
+      <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+      <button class="filter-btn" data-filter="rooms" aria-pressed="false">Rooms</button>
+      <button class="filter-btn" data-filter="facilities" aria-pressed="false">Facilities</button>
+      <button class="filter-btn" data-filter="dining" aria-pressed="false">Dining &amp; Lounge</button>
+      <button class="filter-btn" data-filter="exterior" aria-pressed="false">Exterior</button>
     </div>
   </section>
 
   <!-- GALLERY GRID -->
-  <section class="py-16 lg:py-24 px-5 lg:px-16 bg-midnight">
+  <section class="py-16 lg:py-20 px-5 lg:px-16 bg-midnight">
     <div class="max-w-7xl mx-auto">
+      <div class="gallery-grid">
 
-      <!-- Category 1: Rooms -->
-      <div class="mb-16 reveal">
-        <h2 class="font-display text-3xl md:text-4xl text-ivory text-center">Rooms</h2>
-        <div class="gold-divider w-16 mx-auto mt-3 mb-10"></div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          <div class="bg-[#1a1a1a] min-h-[200px] border border-gold/30 rounded-xl flex items-center justify-center">
-            <span class="text-ivory font-display text-xl">Room 1</span>
-          </div>
-          <div class="bg-[#1a1a1a] min-h-[200px] border border-gold/30 rounded-xl flex items-center justify-center">
-            <span class="text-ivory font-display text-xl">Room 2</span>
-          </div>
-          <div class="bg-[#1a1a1a] min-h-[200px] border border-gold/30 rounded-xl flex items-center justify-center">
-            <span class="text-ivory font-display text-xl">Room 3</span>
-          </div>
+        <!-- 1. Presidential Suite -->
+        <div class="gallery-item" data-category="rooms">
+          <img src="room-presidential.webp" alt="Presidential Suite" loading="lazy">
+          <div class="category-badge">Rooms</div>
+          <div class="caption-overlay"><span>Presidential Suite</span></div>
         </div>
-      </div>
 
-      <!-- Category 2: Amenities -->
-      <div class="mb-16 reveal">
-        <h2 class="font-display text-3xl md:text-4xl text-ivory text-center">Amenities</h2>
-        <div class="gold-divider w-16 mx-auto mt-3 mb-10"></div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          <div class="bg-[#1a1a1a] min-h-[200px] border border-gold/30 rounded-xl flex items-center justify-center">
-            <span class="text-ivory font-display text-xl">Amenity 1</span>
-          </div>
-          <div class="bg-[#1a1a1a] min-h-[200px] border border-gold/30 rounded-xl flex items-center justify-center">
-            <span class="text-ivory font-display text-xl">Amenity 2</span>
-          </div>
-          <div class="bg-[#1a1a1a] min-h-[200px] border border-gold/30 rounded-xl flex items-center justify-center">
-            <span class="text-ivory font-display text-xl">Amenity 3</span>
-          </div>
+        <!-- 2. Executive Room -->
+        <div class="gallery-item" data-category="rooms">
+          <img src="room-executive.webp" alt="Executive Room" loading="lazy">
+          <div class="category-badge">Rooms</div>
+          <div class="caption-overlay"><span>Executive Room</span></div>
         </div>
-      </div>
 
-      <!-- Category 3: Dining -->
-      <div class="reveal">
-        <h2 class="font-display text-3xl md:text-4xl text-ivory text-center">Dining</h2>
-        <div class="gold-divider w-16 mx-auto mt-3 mb-10"></div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          <div class="bg-[#1a1a1a] min-h-[200px] border border-gold/30 rounded-xl flex items-center justify-center">
-            <span class="text-ivory font-display text-xl">Dining 1</span>
-          </div>
-          <div class="bg-[#1a1a1a] min-h-[200px] border border-gold/30 rounded-xl flex items-center justify-center">
-            <span class="text-ivory font-display text-xl">Dining 2</span>
-          </div>
-          <div class="bg-[#1a1a1a] min-h-[200px] border border-gold/30 rounded-xl flex items-center justify-center">
-            <span class="text-ivory font-display text-xl">Dining 3</span>
-          </div>
+        <!-- 3. Standard Room -->
+        <div class="gallery-item" data-category="rooms">
+          <img src="room-standard.webp" alt="Standard Room" loading="lazy">
+          <div class="category-badge">Rooms</div>
+          <div class="caption-overlay"><span>Standard Room</span></div>
         </div>
-      </div>
 
+        <!-- 4. Main Pool -->
+        <div class="gallery-item" data-category="facilities">
+          <img src="pool-main.webp" alt="Main Pool" loading="lazy">
+          <div class="category-badge">Facilities</div>
+          <div class="caption-overlay"><span>Main Pool</span></div>
+        </div>
+
+        <!-- 5. Evening Pool -->
+        <div class="gallery-item" data-category="facilities">
+          <img src="pool-night.webp" alt="Evening Pool" loading="lazy">
+          <div class="category-badge">Facilities</div>
+          <div class="caption-overlay"><span>Evening Pool</span></div>
+        </div>
+
+        <!-- 6. Grand Reception -->
+        <div class="gallery-item" data-category="facilities">
+          <img src="lobby-view.webp" alt="Grand Reception" loading="lazy">
+          <div class="category-badge">Facilities</div>
+          <div class="caption-overlay"><span>Grand Reception</span></div>
+        </div>
+
+        <!-- 7. Restaurant -->
+        <div class="gallery-item" data-category="dining">
+          <div class="placeholder-img" aria-label="Restaurant">Restaurant</div>
+          <div class="category-badge">Dining</div>
+          <div class="caption-overlay"><span>Restaurant</span></div>
+        </div>
+
+        <!-- 8. Bar & Lounge -->
+        <div class="gallery-item" data-category="dining">
+          <div class="placeholder-img" aria-label="Bar & Lounge">Bar &amp; Lounge</div>
+          <div class="category-badge">Dining</div>
+          <div class="caption-overlay"><span>Bar &amp; Lounge</span></div>
+        </div>
+
+        <!-- 9. Breakfast Area -->
+        <div class="gallery-item" data-category="dining">
+          <div class="placeholder-img" aria-label="Breakfast Area">Breakfast Area</div>
+          <div class="category-badge">Dining</div>
+          <div class="caption-overlay"><span>Breakfast Area</span></div>
+        </div>
+
+        <!-- 10. Hotel Exterior -->
+        <div class="gallery-item" data-category="exterior">
+          <img src="hero-building.webp" alt="Hotel Exterior" loading="lazy">
+          <div class="category-badge">Exterior</div>
+          <div class="caption-overlay"><span>Hotel Exterior</span></div>
+        </div>
+
+        <!-- 11. Hotel Entrance -->
+        <div class="gallery-item" data-category="exterior">
+          <div class="placeholder-img" aria-label="Hotel Entrance">Hotel Entrance</div>
+          <div class="category-badge">Exterior</div>
+          <div class="caption-overlay"><span>Hotel Entrance</span></div>
+        </div>
+
+        <!-- 12. Night View -->
+        <div class="gallery-item" data-category="exterior">
+          <div class="placeholder-img" aria-label="Night View">Night View</div>
+          <div class="category-badge">Exterior</div>
+          <div class="caption-overlay"><span>Night View</span></div>
+        </div>
+
+      </div>
     </div>
   </section>
 
-<footer class="bg-[#060606] pt-16 pb-8 px-5 lg:px-16">
-  <div class="max-w-7xl mx-auto">
-    <div class="footer-grid grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 lg:gap-16">
-      <div>
-        <a href="index.html" class="nav-logo font-display text-2xl lg:text-3xl uppercase tracking-[0.1em] leading-none text-white">
-          Kayriott<span class="text-[#C9A84C]"> Hotel &amp; Suites</span>
-        </a>
-        <p class="text-[#F5F0E8]/60 text-sm mt-4 leading-relaxed">Where comfort meets refined hospitality.</p>
-        <p class="text-[#F5F0E8]/40 text-xs mt-4 leading-relaxed">Km 3 Refinery Road, Effurun-Warri, Delta State, Nigeria</p>
-      </div>
-      <div>
-        <h4 class="font-display text-lg text-[#F5F0E8] mb-4">Navigate</h4>
-        <ul class="space-y-2.5 list-none">
-          <li><a href="index.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Home</a></li>
-          <li><a href="rooms.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Rooms</a></li>
-          <li><a href="gallery.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Gallery</a></li>
-          <li><a href="facilities.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Facilities</a></li>
-          <li><a href="contact.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-display text-lg text-[#F5F0E8] mb-4">Connect</h4>
-        <ul class="space-y-2.5 list-none">
-          <li><a href="contact.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Contact Us</a></li>
-          <li><a href="booking.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Book Now</a></li>
-          <li><a href="https://wa.me/2348087354890" target="_blank" rel="noopener noreferrer" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">WhatsApp</a></li>
-          <li><a href="#" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Instagram</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom border-t border-[#C9A84C] mt-12 pt-8 text-center">
-      <p class="text-[#F5F0E8]/30 text-[0.65rem] tracking-wider">&copy; 2025 Kayriott Hotel &amp; Suites. All Rights Reserved.</p>
-    </div>
+  <!-- LIGHTBOX -->
+  <div id="lightbox">
+    <button class="lb-close" id="lbClose" aria-label="Close lightbox">&times;</button>
+    <button class="lb-arrow lb-prev" id="lbPrev" aria-label="Previous image">&#10094;</button>
+    <button class="lb-arrow lb-next" id="lbNext" aria-label="Next image">&#10095;</button>
+    <img id="lightboxImg" src="" alt="Gallery image">
   </div>
-</footer>
 
-<a href="https://wa.me/2348087354890" class="whatsapp-float fixed bottom-6 right-6 w-14 h-14 bg-[#25d366] rounded-full flex items-center justify-center z-[999] shadow-lg transition-transform duration-300 hover:scale-110" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-  <svg viewBox="0 0 24 24" width="24" height="24" fill="white">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-  </svg>
-</a>
+  <!-- FOOTER -->
+  <footer class="bg-[#060606] pt-16 pb-8 px-5 lg:px-16">
+    <div class="max-w-7xl mx-auto">
+      <div class="footer-grid grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 lg:gap-16">
+        <!-- Brand -->
+        <div>
+          <a href="index.html" class="nav-logo font-display text-2xl lg:text-3xl uppercase tracking-[0.1em] leading-none text-white">
+            Kayriott<span class="text-[#C9A84C]"> Hotel &amp; Suites</span>
+          </a>
+          <p class="text-[#F5F0E8]/60 text-sm mt-4 leading-relaxed">Where comfort meets refined hospitality.</p>
+          <p class="text-[#F5F0E8]/40 text-xs mt-4 leading-relaxed">Km 3 Refinery Road, Effurun-Warri, Delta State, Nigeria</p>
+        </div>
 
-<script>
-  // NAVBAR SCROLL EFFECT
-  const navbar = document.getElementById('navbar');
+        <!-- Navigate -->
+        <div>
+          <h4 class="font-display text-lg text-[#F5F0E8] mb-4">Navigate</h4>
+          <ul class="space-y-2.5 list-none">
+            <li><a href="index.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Home</a></li>
+            <li><a href="rooms.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Rooms</a></li>
+            <li><a href="gallery.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Gallery</a></li>
+            <li><a href="facilities.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Facilities</a></li>
+            <li><a href="contact.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Contact</a></li>
+          </ul>
+        </div>
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 80) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  });
+        <!-- Connect -->
+        <div>
+          <h4 class="font-display text-lg text-[#F5F0E8] mb-4">Connect</h4>
+          <ul class="space-y-2.5 list-none">
+            <li><a href="contact.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Contact Us</a></li>
+            <li><a href="booking.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Book Now</a></li>
+            <li><a href="https://wa.me/2348087354890" target="_blank" rel="noopener noreferrer" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">WhatsApp</a></li>
+            <li><a href="#" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
 
-  // MOBILE NAV TOGGLE
-  function toggleMobileNav() {
-    const nav = document.getElementById('mobileNav');
-    const toggle = document.getElementById('mobileToggle');
-    const isOpen = nav.classList.toggle('open');
-    toggle.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-  }
+      <div class="footer-bottom border-t border-[#C9A84C] mt-12 pt-8 text-center">
+        <p class="text-[#F5F0E8]/30 text-[0.65rem] tracking-wider">&copy; 2025 Kayriott Hotel &amp; Suites. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
 
-  document.getElementById('mobileToggle').addEventListener('click', toggleMobileNav);
+  <a href="https://wa.me/2348087354890" class="whatsapp-float fixed bottom-6 right-6 w-14 h-14 bg-[#25d366] rounded-full flex items-center justify-center z-[999] shadow-lg transition-transform duration-300 hover:scale-110" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="white">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
 
-  // SCROLL REVEAL (IntersectionObserver)
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+  <script>
+    // NAVBAR SCROLL
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 80);
     });
-  }, { threshold: 0.1 });
 
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-</script>
+    // MOBILE NAV TOGGLE
+    function toggleMobileNav() {
+      const nav = document.getElementById('mobileNav');
+      const toggle = document.getElementById('mobileToggle');
+      const isOpen = nav.classList.toggle('open');
+      toggle.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
+    document.getElementById('mobileToggle').addEventListener('click', toggleMobileNav);
+
+    // FILTER LOGIC
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        filterBtns.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        this.classList.add('active');
+        this.setAttribute('aria-pressed', 'true');
+
+        const filter = this.getAttribute('data-filter');
+        galleryItems.forEach((item, index) => {
+          const cat = item.getAttribute('data-category');
+          if (filter === 'all' || cat === filter) {
+            item.classList.remove('hidden-item');
+            item.classList.add('visible-item');
+            item.style.animation = 'none';
+            item.offsetHeight;
+            item.style.animation = '';
+          } else {
+            item.classList.add('hidden-item');
+            item.classList.remove('visible-item');
+          }
+        });
+      });
+    });
+
+    // LIGHTBOX LOGIC
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lbClose = document.getElementById('lbClose');
+    const lbPrev = document.getElementById('lbPrev');
+    const lbNext = document.getElementById('lbNext');
+    let currentImages = [];
+    let currentIndex = 0;
+
+    function getVisibleRealImages() {
+      const items = document.querySelectorAll('.gallery-item:not(.hidden-item) img');
+      return Array.from(items);
+    }
+
+    document.querySelectorAll('.gallery-item img').forEach((img, idx) => {
+      img.addEventListener('click', function(e) {
+        currentImages = getVisibleRealImages();
+        const allImgs = document.querySelectorAll('.gallery-item:not(.hidden-item) img');
+        currentImages = Array.from(allImgs);
+        const src = this.getAttribute('src');
+        currentIndex = currentImages.findIndex(i => i.getAttribute('src') === src);
+        if (currentIndex === -1) currentIndex = 0;
+        openLightbox(src);
+      });
+    });
+
+    function openLightbox(src) {
+      lightboxImg.setAttribute('src', src);
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function navigateLightbox(direction) {
+      currentImages = getVisibleRealImages();
+      if (currentImages.length === 0) return;
+      currentIndex = (currentIndex + direction + currentImages.length) % currentImages.length;
+      const newSrc = currentImages[currentIndex].getAttribute('src');
+      lightboxImg.setAttribute('src', newSrc);
+    }
+
+    lbClose.addEventListener('click', closeLightbox);
+    lbPrev.addEventListener('click', () => navigateLightbox(-1));
+    lbNext.addEventListener('click', () => navigateLightbox(1));
+
+    document.addEventListener('keydown', function(e) {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') navigateLightbox(-1);
+      if (e.key === 'ArrowRight') navigateLightbox(1);
+    });
+
+    lightbox.addEventListener('click', function(e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+  </script>
 </body>
 </html>
