@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kayriott Hotel & Suites | Luxury in Effurun-Warri</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: '#C9A84C',
+            'gold-light': '#E8C97A',
+            'gold-dark': '#A8882E',
+            ivory: '#F5F0E8',
+            'ivory-muted': '#C4BBAF',
+            midnight: '#0a0a0a',
+            'navy-dark': '#0d1117',
+            zinc: { 900: '#141414' },
+          },
+          fontFamily: {
+            display: ['Playfair Display', 'serif'],
+            body: ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #F5F0E8; overflow-x: hidden; }
+
+    ::selection { background: #C9A84C; color: #0a0a0a; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+    ::-webkit-scrollbar-thumb { background: #C9A84C; border-radius: 3px; }
+
+    .gold-text { color: #C9A84C; }
+    .gold-border { border-color: rgba(201, 168, 76, 0.3); }
+    .gold-divider { height: 1px; background: linear-gradient(to right, transparent, #C9A84C, transparent); }
+
+    .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .nav-link { position: relative; color: rgba(245, 240, 232, 0.8); text-decoration: none; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s; }
+    .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: #C9A84C; transition: width 0.3s; }
+    .nav-link:hover { color: #C9A84C; }
+    .nav-link:hover::after { width: 100%; }
+
+    .hero-gradient { background: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, transparent 100%); }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 45%, rgba(0,0,0,0.6) 100%); z-index: 1; }
+
+    .frosted { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); }
+    .frosted-input { background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.1); color: #F5F0E8; outline: none; transition: all 0.3s; }
+    .frosted-input:focus { border-color: #C9A84C; box-shadow: 0 0 0 2px rgba(201, 168, 76, 0.2); }
+    .frosted-input option { background: #0a0a0a; color: #F5F0E8; }
+
+    .btn-gold-fill { background: #C9A84C; color: #0a0a0a; font-weight: 600; transition: all 0.3s; cursor: pointer; }
+    .btn-gold-fill:hover { background: #E8C97A; transform: scale(1.02); }
+    .btn-gold-outline { border: 1px solid #C9A84C; color: #C9A84C; background: transparent; transition: all 0.3s; cursor: pointer; text-decoration: none; display: inline-block; text-align: center; }
+    .btn-gold-outline:hover { background: #C9A84C; color: #0a0a0a; }
+
+    .room-card { background: #141414; border: 1px solid rgba(201, 168, 76, 0.15); border-radius: 1rem; overflow: hidden; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+    .room-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 30px rgba(201, 168, 76, 0.08); }
+    .room-card.presidential { border-color: rgba(201, 168, 76, 0.4); box-shadow: 0 0 30px rgba(201, 168, 76, 0.1); }
+    .room-card.presidential:hover { box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 50px rgba(201, 168, 76, 0.15); }
+
+    .img-zoom { overflow: hidden; }
+    .img-zoom img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+    .img-zoom:hover img { transform: scale(1.05); }
+
+    .facility-card { position: relative; overflow: hidden; border-radius: 1rem; cursor: pointer; border: 1px solid transparent; transition: all 0.4s; }
+    .facility-card:hover { border-color: rgba(201, 168, 76, 0.4); }
+    .facility-card .overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%); padding: 1.5rem; display: flex; flex-direction: column; justify-content: flex-end; }
+
+    .mission-card { background: #141414; border-left: 3px solid #C9A84C; border-radius: 0 1rem 1rem 0; transition: all 0.3s; }
+    .mission-card:hover { box-shadow: 0 10px 30px rgba(201, 168, 76, 0.05); }
+
+    @keyframes slowZoom { from { transform: scale(1); } to { transform: scale(1.08); } }
+    .hero-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 2s ease; }
+    .hero-slide.active { opacity: 1; animation: slowZoom 20s infinite alternate; }
+
+    @media (max-width: 767px) {
+      .mobile-nav { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.97); z-index: 190; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; opacity: 0; pointer-events: none; transition: all 0.4s; }
+      .mobile-nav.open { opacity: 1; pointer-events: all; }
+      .mobile-nav a { color: #F5F0E8; text-decoration: none; font-size: 1.2rem; letter-spacing: 0.2em; text-transform: uppercase; font-family: 'Playfair Display', serif; }
+      .mobile-nav a:hover { color: #C9A84C; }
+    }
+
+    @media (min-width: 768px) {
+      .mobile-nav { display: none; }
+      .hamburger { display: none; }
+    }
+
+    .hamburger { width: 28px; height: 20px; position: relative; cursor: pointer; z-index: 200; }
+    .hamburger span { display: block; width: 100%; height: 2px; background: #C9A84C; position: absolute; transition: all 0.3s; }
+    .hamburger span:nth-child(1) { top: 0; }
+    .hamburger span:nth-child(2) { top: 9px; }
+    .hamburger span:nth-child(3) { top: 18px; }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg); top: 9px; }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg); top: 9px; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-[200] transition-all duration-500">
+    <div class="max-w-7xl mx-auto px-5 lg:px-16 flex items-center justify-between py-4 lg:py-5">
+      <a href="#" class="font-display text-2xl lg:text-3xl text-gold uppercase tracking-[0.1em] leading-none">
+        Kayriott
+        <span class="block text-[0.45rem] lg:text-[0.5rem] tracking-[0.25em] text-ivory-muted font-body font-normal">Effurun-Warri</span>
+      </a>
+
+      <ul class="hidden xl:flex items-center gap-10 list-none">
+        <li><a href="#about" class="nav-link">About Us</a></li>
+        <li><a href="#rooms" class="nav-link">Rooms</a></li>
+        <li><a href="#facilities" class="nav-link">Facilities</a></li>
+        <li><a href="#conference" class="nav-link">Events</a></li>
+        <li><a href="#location" class="nav-link">Location</a></li>
+      </ul>
+
+      <a href="https://wa.me/2348087354890" class="hidden xl:inline-block btn-gold-outline rounded-full px-7 py-2.5 text-[0.6rem] tracking-[0.2em] uppercase font-medium">Book Now</a>
+
+      <div class="hamburger xl:hidden" id="hamburger" onclick="toggleMobileNav()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#about" onclick="toggleMobileNav()">About Us</a>
+    <a href="#rooms" onclick="toggleMobileNav()">Rooms</a>
+    <a href="#facilities" onclick="toggleMobileNav()">Facilities</a>
+    <a href="#conference" onclick="toggleMobileNav()">Events</a>
+    <a href="#location" onclick="toggleMobileNav()">Location</a>
+    <a href="https://wa.me/2348087354890" class="btn-gold-fill rounded-full px-10 py-3 text-[0.65rem] tracking-[0.2em] uppercase" onclick="toggleMobileNav()">Book Now</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero" class="relative h-screen min-h-[650px] flex items-center justify-center overflow-hidden bg-black">
+    <video class="absolute inset-0 w-full h-full object-cover z-0" autoplay muted loop playsinline>
+      <source src="hero-hotel.mp4" type="video/mp4">
+    </video>
+    <div class="hero-slide active" style="background-image:url('hero-building.webp')"></div>
+    <div class="hero-slide" style="background-image:url('lobby-view.webp')"></div>
+    <div class="hero-slide" style="background-image:url('pool-main.webp')"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="relative z-10 text-center px-5 max-w-5xl mx-auto">
+      <h1 class="font-display text-5xl md:text-7xl lg:text-8xl leading-[1.1] text-white mb-4">
+        Where Comfort Meets<br>
+        <em class="text-gold not-italic">Refined Hospitality</em>
+      </h1>
+      <div class="w-16 h-[1px] bg-gold mx-auto mb-5"></div>
+      <p class="text-ivory/80 text-sm md:text-base tracking-widest uppercase font-light mb-8">Km 3 Refinery Road · Effurun-Warri</p>
+      <a href="#rooms" class="btn-gold-fill rounded-full px-10 py-4 text-[0.65rem] tracking-[0.25em] uppercase inline-block">Explore Suites</a>
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0 z-10 px-5 lg:px-16 pb-8 lg:pb-12">
+      <div class="frosted rounded-2xl p-5 lg:p-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 items-end">
+          <div>
+            <label class="block text-[0.55rem] tracking-[0.15em] uppercase text-gold mb-2 font-medium">Check In</label>
+            <input type="date" value="2026-05-30" class="frosted-input rounded-xl px-4 py-3 w-full text-sm">
+          </div>
+          <div>
+            <label class="block text-[0.55rem] tracking-[0.15em] uppercase text-gold mb-2 font-medium">Check Out</label>
+            <input type="date" value="2026-05-31" class="frosted-input rounded-xl px-4 py-3 w-full text-sm">
+          </div>
+          <div>
+            <label class="block text-[0.55rem] tracking-[0.15em] uppercase text-gold mb-2 font-medium">Guests</label>
+            <select class="frosted-input rounded-xl px-4 py-3 w-full text-sm">
+              <option>1 Adult</option>
+              <option selected>2 Adults</option>
+              <option>3+ Adults</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[0.55rem] tracking-[0.15em] uppercase text-gold mb-2 font-medium">Room</label>
+            <select class="frosted-input rounded-xl px-4 py-3 w-full text-sm">
+              <option>Standard Room</option>
+              <option>Executive Room</option>
+              <option>Presidential Suite</option>
+            </select>
+          </div>
+        </div>
+        <button onclick="alert('This is a demo booking trigger. In the final version, this will lead to the secure payment gateway.')" class="btn-gold-fill rounded-full mt-4 w-full py-3.5 text-[0.6rem] tracking-[0.25em] uppercase font-semibold">Check Availability</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FACILITIES -->
+  <section id="facilities" class="py-16 lg:py-24 px-5 lg:px-16 bg-navy-dark reveal">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12 lg:mb-16">
+        <span class="text-gold text-[0.55rem] tracking-[0.4em] uppercase font-medium">Luxury Facilities</span>
+        <h2 class="font-display text-3xl md:text-5xl lg:text-6xl text-ivory mt-3 font-light">
+          World-Class <em class="text-gold not-italic">Architecture</em>
+        </h2>
+        <div class="gold-divider w-20 mx-auto mt-5"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 lg:gap-4">
+        <div class="facility-card md:row-span-2 h-[300px] md:h-[612px]">
+          <div class="img-zoom w-full h-full">
+            <img src="lobby-view.webp" alt="Grand Reception" loading="lazy">
+          </div>
+          <div class="overlay">
+            <h3 class="font-display text-2xl text-ivory">Grand Reception</h3>
+            <p class="text-ivory/60 text-sm mt-1">Exquisite chandeliers and spiral architecture.</p>
+          </div>
+        </div>
+        <div class="facility-card h-[300px]">
+          <div class="img-zoom w-full h-full">
+            <img src="pool-main.webp" alt="Dual Pool Complex" loading="lazy">
+          </div>
+          <div class="overlay">
+            <h3 class="font-display text-2xl text-ivory">Dual Pool Complex</h3>
+            <p class="text-ivory/60 text-sm mt-1">Daytime relaxation by the water.</p>
+          </div>
+        </div>
+        <div class="facility-card h-[300px]">
+          <div class="img-zoom w-full h-full">
+            <img src="hero-building.webp" alt="Hotel Exterior" loading="lazy">
+          </div>
+          <div class="overlay">
+            <h3 class="font-display text-2xl text-ivory">Hotel Exterior</h3>
+            <p class="text-ivory/60 text-sm mt-1">Modern design in the heart of Warri.</p>
+          </div>
+        </div>
+        <div class="facility-card h-[300px]">
+          <div class="img-zoom w-full h-full">
+            <img src="pool-night.webp" alt="Evening Lounge" loading="lazy">
+          </div>
+          <div class="overlay">
+            <h3 class="font-display text-2xl text-ivory">Evening Lounge</h3>
+            <p class="text-ivory/60 text-sm mt-1">Poolside ambiance at dusk.</p>
+          </div>
+        </div>
+        <div class="facility-card h-[300px]">
+          <div class="img-zoom w-full h-full">
+            <img src="room-presidential.webp" alt="Signature Suites" loading="lazy">
+          </div>
+          <div class="overlay">
+            <h3 class="font-display text-2xl text-ivory">Signature Suites</h3>
+            <p class="text-ivory/60 text-sm mt-1">Elegance in every corner.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROOMS & ACCOMMODATIONS -->
+  <section id="rooms" class="py-16 lg:py-24 px-5 lg:px-16 bg-midnight reveal">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12 lg:mb-16">
+        <span class="text-gold text-[0.55rem] tracking-[0.4em] uppercase font-medium">Accommodations</span>
+        <h2 class="font-display text-3xl md:text-5xl lg:text-6xl text-ivory mt-3 font-light">
+          Our <em class="text-gold not-italic">Accommodations</em>
+        </h2>
+        <div class="gold-divider w-20 mx-auto mt-5"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <!-- Presidential Suite -->
+        <div class="room-card presidential lg:scale-[1.04]">
+          <div class="img-zoom h-64 lg:h-72">
+            <img src="room-presidential.webp" alt="Presidential Suite" loading="lazy">
+          </div>
+          <div class="p-6 lg:p-7 flex flex-col items-start">
+            <h3 class="font-display text-2xl text-ivory">Presidential Suite</h3>
+            <p class="text-gold text-3xl font-light mt-2">₦85,000 <span class="text-sm text-ivory/50 font-body">/ night</span></p>
+            <div class="w-full h-[1px] bg-gradient-to-r from-gold/60 via-gold/40 to-transparent mt-4 mb-5"></div>
+            <ul class="text-ivory/50 text-xs space-y-1.5 mb-6">
+              <li class="flex items-center gap-2"><span class="text-gold text-sm">✦</span> King-size bed · Living area</li>
+              <li class="flex items-center gap-2"><span class="text-gold text-sm">✦</span> Private terrace · City view</li>
+              <li class="flex items-center gap-2"><span class="text-gold text-sm">✦</span> Marble bathroom · Jacuzzi</li>
+            </ul>
+            <a href="https://wa.me/2348087354890?text=I%27m%20interested%20in%20the%20Presidential%20Suite" class="btn-gold-outline rounded-full px-8 py-3 text-[0.55rem] tracking-[0.2em] uppercase w-full mt-auto">Book This Room</a>
+          </div>
+        </div>
+
+        <!-- Executive Room -->
+        <div class="room-card">
+          <div class="img-zoom h-64 lg:h-72">
+            <img src="room-executive.webp" alt="Executive Room" loading="lazy">
+          </div>
+          <div class="p-6 lg:p-7 flex flex-col items-start">
+            <h3 class="font-display text-2xl text-ivory">Executive Room</h3>
+            <p class="text-gold text-3xl font-light mt-2">₦45,000 <span class="text-sm text-ivory/50 font-body">/ night</span></p>
+            <div class="w-full h-[1px] bg-gradient-to-r from-gold/60 via-gold/40 to-transparent mt-4 mb-5"></div>
+            <ul class="text-ivory/50 text-xs space-y-1.5 mb-6">
+              <li class="flex items-center gap-2"><span class="text-gold text-sm">✦</span> Queen-size bed · Work desk</li>
+              <li class="flex items-center gap-2"><span class="text-gold text-sm">✦</span> City view · Smart TV</li>
+              <li class="flex items-center gap-2"><span class="text-gold text-sm">✦</span> En-suite bathroom · Rain shower</li>
+            </ul>
+            <a href="https://wa.me/2348087354890?text=I%27m%20interested%20in%20the%20Executive%20Room" class="btn-gold-outline rounded-full px-8 py-3 text-[0.55rem] tracking-[0.2em] uppercase w-full mt-auto">Book This Room</a>
+          </div>
+        </div>
+
+        <!-- Standard Room -->
+        <div class="room-card">
+          <div class="img-zoom h-64 lg:h-72">
+            <img src="room-standard.webp" alt="Standard Room" loading="lazy">
+          </div>
+          <div class="p-6 lg:p-7 flex flex-col items-start">
+            <h3 class="font-display text-2xl text-ivory">Standard Room</h3>
+            <p class="text-gold text-3xl font-light mt-2">₦22,000 <span class="text-sm text-ivory/50 font-body">/ night</span></p>
+            <div class="w-full h-[1px] bg-gradient-to-r from-gold/60 via-gold/40 to-transparent mt-4 mb-5"></div>
+            <ul class="text-ivory/50 text-xs space-y-1.5 mb-6">
+              <li class="flex items-center gap-2"><span class="text-gold text-sm">✦</span> Double bed · Work area</li>
+              <li class="flex items-center gap-2"><span class="text-gold text-sm">✦</span> Flat-screen TV · WiFi</li>
+              <li class="flex items-center gap-2"><span class="text-gold text-sm">✦</span> En-suite bathroom</li>
+            </ul>
+            <a href="https://wa.me/2348087354890?text=I%27m%20interested%20in%20the%20Standard%20Room" class="btn-gold-outline rounded-full px-8 py-3 text-[0.55rem] tracking-[0.2em] uppercase w-full mt-auto">Book This Room</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION & VISION -->
+  <section id="about" class="py-16 lg:py-24 px-5 lg:px-16 bg-navy-dark reveal">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12 lg:mb-16">
+        <span class="text-gold text-[0.55rem] tracking-[0.4em] uppercase font-medium">About Kayriott</span>
+        <h2 class="font-display text-3xl md:text-5xl lg:text-6xl text-ivory mt-3 font-light">
+          Our <em class="text-gold not-italic">Philosophy</em>
+        </h2>
+        <div class="gold-divider w-20 mx-auto mt-5"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10">
+        <div class="mission-card p-8 lg:p-10 reveal">
+          <span class="text-gold text-2xl font-display block mb-4">I</span>
+          <h4 class="font-display text-xl text-ivory mb-4">Our Mission</h4>
+          <p class="text-ivory/60 leading-relaxed text-sm">To provide an unparalleled hospitality experience by combining local warmth with international standards.</p>
+        </div>
+        <div class="mission-card p-8 lg:p-10 reveal">
+          <span class="text-gold text-2xl font-display block mb-4">II</span>
+          <h4 class="font-display text-xl text-ivory mb-4">Our Vision</h4>
+          <p class="text-ivory/60 leading-relaxed text-sm">To be the premier choice for luxury accommodation and corporate events in the Niger Delta region.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONFERENCE / EVENTS PLACEHOLDER -->
+  <section id="conference" class="py-16 lg:py-24 px-5 lg:px-16 bg-midnight reveal">
+    <div class="max-w-7xl mx-auto text-center">
+      <span class="text-gold text-[0.55rem] tracking-[0.4em] uppercase font-medium">Events</span>
+      <h2 class="font-display text-3xl md:text-5xl lg:text-6xl text-ivory mt-3 font-light mb-6">
+        Host Your <em class="text-gold not-italic">Event</em>
+      </h2>
+      <p class="text-ivory/60 max-w-2xl mx-auto mb-8 text-sm leading-relaxed">From corporate conferences to private celebrations, our versatile event spaces and dedicated team ensure every occasion is executed to perfection.</p>
+      <a href="https://wa.me/2348087354890" class="btn-gold-outline rounded-full px-10 py-3.5 text-[0.55rem] tracking-[0.2em] uppercase">Inquire Now</a>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section id="location" class="py-16 lg:py-24 px-5 lg:px-16 bg-navy-dark reveal">
+    <div class="max-w-7xl mx-auto text-center">
+      <span class="text-gold text-[0.55rem] tracking-[0.4em] uppercase font-medium">Location</span>
+      <h2 class="font-display text-3xl md:text-5xl lg:text-6xl text-ivory mt-3 font-light mb-6">
+        Find <em class="text-gold not-italic">Us</em>
+      </h2>
+      <p class="text-ivory/60 text-sm mb-2">Km 3 Refinery Road, Effurun-Warri</p>
+      <p class="text-ivory/40 text-xs">Delta State, Nigeria</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#060606] border-t border-gold/20 py-12 lg:py-16 px-5 lg:px-16">
+    <div class="max-w-7xl mx-auto text-center">
+      <a href="#" class="font-display text-3xl text-gold uppercase tracking-[0.1em] leading-none inline-block">
+        Kayriott
+        <span class="block text-[0.45rem] tracking-[0.25em] text-ivory-muted font-body font-normal">Effurun-Warri</span>
+      </a>
+
+      <p class="text-ivory/50 text-sm mt-6 max-w-md mx-auto">Km 3 Refinery Road, Effurun-Warri, Delta State</p>
+
+      <div class="flex justify-center gap-6 mt-8">
+        <a href="https://wa.me/2348087354890" class="btn-gold-fill rounded-full px-8 py-3 text-[0.55rem] tracking-[0.2em] uppercase font-semibold inline-flex items-center gap-2">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book via WhatsApp
+        </a>
+      </div>
+
+      <p class="text-ivory/30 text-[0.6rem] tracking-wider mt-8">© 2025 Kayriott Hotel & Suites. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOAT -->
+  <a href="https://wa.me/2348087354890" target="_blank" class="fixed bottom-6 right-6 w-14 h-14 bg-[#25d366] text-white rounded-full flex items-center justify-center z-[999] shadow-lg hover:scale-110 transition-transform duration-300" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script>
+    // NAVBAR SCROLL EFFECT
+    const navbar = document.getElementById('navbar');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      if (scrollY > 80) {
+        navbar.classList.add('bg-black/70', 'backdrop-blur-md', 'shadow-lg', 'shadow-black/20');
+        navbar.classList.remove('bg-transparent');
+      } else {
+        navbar.classList.remove('bg-black/70', 'backdrop-blur-md', 'shadow-lg', 'shadow-black/20');
+        navbar.classList.add('bg-transparent');
+      }
+      lastScroll = scrollY;
+    });
+
+    // MOBILE NAV TOGGLE
+    function toggleMobileNav() {
+      const nav = document.getElementById('mobileNav');
+      const ham = document.getElementById('hamburger');
+      nav.classList.toggle('open');
+      ham.classList.toggle('active');
+      document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+    }
+
+    // HERO SLIDESHOW
+    const heroSlides = document.querySelectorAll('.hero-slide');
+    let slideIndex = 0;
+    if (heroSlides.length > 0) {
+      setInterval(() => {
+        heroSlides[slideIndex].classList.remove('active');
+        slideIndex = (slideIndex + 1) % heroSlides.length;
+        heroSlides[slideIndex].classList.add('active');
+      }, 6000);
+    }
+
+    // SCROLL REVEAL (IntersectionObserver)
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  </script>
+</body>
+</html>
