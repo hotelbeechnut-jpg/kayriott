@@ -19,7 +19,8 @@ body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #F5F0E8; ov
 .nav-link:hover { color: #C9A84C; }
 .nav-link:hover::after { width: 100%; }
 
-#navbar.scrolled { background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+#navbar { background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+#navbar.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.5); }
 .hero-gradient { background: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, transparent 100%); }
 .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 45%, rgba(0,0,0,0.6) 100%); z-index: 1; }
 
