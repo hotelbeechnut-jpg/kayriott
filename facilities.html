@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Explore Kayriott Hotel & Suites rooms — Presidential Suite, Executive Room, and Standard Room in Effurun-Warri, Delta State.">
-  <title>Kayriott Hotel & Suites | Our Rooms</title>
+  <meta name="description" content="Explore the facilities at Kayriott Hotel & Suites — pool, reception, lounge, dining, and more in Effurun-Warri, Delta State.">
+  <title>Facilities — Kayriott Hotel & Suites</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -32,6 +32,33 @@
     }
   </script>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .page-hero {
+      position: relative;
+      height: 50vh;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #0a0a0a;
+    }
+    .page-hero .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+    }
+    .page-hero .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 1.25rem;
+    }
+    .mobile-toggle.open span:nth-child(1) { top: 9px !important; transform: rotate(45deg); }
+    .mobile-toggle.open span:nth-child(2) { opacity: 0; }
+    .mobile-toggle.open span:nth-child(3) { top: 9px !important; transform: rotate(-45deg); }
+  </style>
 </head>
 <body>
 
@@ -43,9 +70,9 @@
 
     <ul class="hidden xl:flex items-center gap-10 list-none">
       <li><a href="/" class="nav-link">Home</a></li>
-        <li><a href="rooms" class="nav-link active">Rooms</a></li>
+      <li><a href="rooms" class="nav-link">Rooms</a></li>
       <li><a href="gallery" class="nav-link">Gallery</a></li>
-      <li><a href="facilities" class="nav-link">Facilities</a></li>
+      <li><a href="facilities" class="nav-link active">Facilities</a></li>
       <li><a href="events" class="nav-link">Events</a></li>
       <li><a href="contact" class="nav-link">Contact</a></li>
     </ul>
@@ -70,95 +97,116 @@
   <a href="booking" class="bg-[#C9A84C] text-[#0a0a0a] rounded-full px-10 py-3 text-[0.65rem] tracking-[0.2em] uppercase font-semibold transition-all duration-300 hover:bg-[#E8C97A]" onclick="toggleMobileNav()">Book Now</a>
 </div>
 
-  <!-- PAGE HEADER -->
-  <section class="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-black">
-    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-midnight z-10"></div>
-    <div class="absolute inset-0 z-0">
-      <img src="room-presidential.webp" alt="Luxury Accommodations" class="w-full h-full object-cover opacity-60">
-    </div>
-    <div class="relative z-20 text-center px-5 max-w-4xl mx-auto reveal">
-      <span class="text-gold text-[0.55rem] tracking-[0.4em] uppercase font-medium">Stay With Us</span>
-      <h1 class="font-display text-4xl md:text-6xl lg:text-7xl text-ivory mt-3 font-light leading-tight">
-        Our <em class="text-gold not-italic">Accommodations</em>
-      </h1>
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="hero-bg" style="background-image:url('lobby-view.webp')"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-label inline-block text-gold text-[0.55rem] md:text-[0.65rem] tracking-[0.4em] uppercase font-medium mb-5">✦ World-Class Amenities</span>
+    <h1 class="font-display text-4xl md:text-6xl lg:text-7xl leading-[1.1] text-white">Our <em class="text-gold not-italic">Facilities</em></h1>
+  </div>
+</section>
+
+<!-- FACILITIES GRID -->
+<section class="py-16 lg:py-24 px-5 lg:px-16 bg-midnight reveal">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12 lg:mb-16">
+      <span class="section-label inline-block text-gold text-[0.55rem] tracking-[0.4em] uppercase font-medium mb-3">✦ LUXURY AMENITIES</span>
+      <h2 class="font-display text-3xl md:text-5xl lg:text-6xl text-ivory mt-3 font-light">
+        Designed for <em class="text-gold not-italic">Comfort &amp; Style</em>
+      </h2>
       <div class="gold-divider w-20 mx-auto mt-5"></div>
-      <p class="text-ivory/70 text-sm md:text-base mt-5 max-w-2xl mx-auto">Discover refined comfort in every room — from cozy standards to the pinnacle of luxury.</p>
     </div>
-  </section>
 
-  <!-- ROOMS GRID -->
-  <section class="py-16 lg:py-24 px-5 lg:px-16 bg-midnight reveal">
-    <div class="max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-        <!-- Presidential Suite -->
-        <div class="room-card presidential lg:scale-[1.04]">
-          <div class="img-zoom h-64 lg:h-72">
-            <img src="room-presidential.webp" alt="Presidential Suite" loading="lazy">
-          </div>
-          <div class="p-6 lg:p-7 flex flex-col items-start">
-            <h3 class="font-display text-2xl text-ivory">Presidential Suite</h3>
-            <p class="text-gold text-3xl font-light mt-2">₦85,000 <span class="text-sm text-ivory/50 font-body">/ night</span></p>
-            <div class="w-full h-[1px] bg-gradient-to-r from-gold/60 via-gold/40 to-transparent mt-4 mb-5"></div>
-            <ul class="text-ivory/50 text-xs space-y-1.5 mb-6">
-              <li class="flex items-center gap-2"><span class="text-gold text-sm">✦</span> King-size bed · Living area</li>
-              <li class="flex items-center gap-2"><span class="text-gold text-sm">✦</span> Private terrace · City view</li>
-              <li class="flex items-center gap-2"><span class="text-gold text-sm">✦</span> Marble bathroom · Jacuzzi</li>
-            </ul>
-            <a href="booking" class="btn-gold-outline rounded-full px-8 py-3 text-[0.55rem] tracking-[0.2em] uppercase w-full mt-auto">Book This Room</a>
-          </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
+      <div class="facility-card lg:row-span-2 h-[300px] lg:h-[612px] reveal">
+        <div class="img-zoom w-full h-full">
+          <img src="lobby-view.webp" alt="Grand Reception" loading="lazy">
         </div>
-
-        <!-- Executive Room -->
-        <div class="room-card">
-          <div class="img-zoom h-64 lg:h-72">
-            <img src="room-executive.webp" alt="Executive Room" loading="lazy">
-          </div>
-          <div class="p-6 lg:p-7 flex flex-col items-start">
-            <h3 class="font-display text-2xl text-ivory">Executive Room</h3>
-            <p class="text-gold text-3xl font-light mt-2">₦45,000 <span class="text-sm text-ivory/50 font-body">/ night</span></p>
-            <div class="w-full h-[1px] bg-gradient-to-r from-gold/60 via-gold/40 to-transparent mt-4 mb-5"></div>
-            <ul class="text-ivory/50 text-xs space-y-1.5 mb-6">
-              <li class="flex items-center gap-2"><span class="text-gold text-sm">✦</span> Queen-size bed · Work desk</li>
-              <li class="flex items-center gap-2"><span class="text-gold text-sm">✦</span> City view · Smart TV</li>
-              <li class="flex items-center gap-2"><span class="text-gold text-sm">✦</span> En-suite bathroom · Rain shower</li>
-            </ul>
-            <a href="booking" class="btn-gold-outline rounded-full px-8 py-3 text-[0.55rem] tracking-[0.2em] uppercase w-full mt-auto">Book This Room</a>
-          </div>
+        <div class="overlay">
+          <h3 class="font-display text-2xl text-ivory">Grand Reception</h3>
+          <p class="text-ivory/60 text-sm mt-1">Exquisite chandeliers and spiral architecture.</p>
         </div>
-
-        <!-- Standard Room -->
-        <div class="room-card">
-          <div class="img-zoom h-64 lg:h-72">
-            <img src="room-standard.webp" alt="Standard Room" loading="lazy">
-          </div>
-          <div class="p-6 lg:p-7 flex flex-col items-start">
-            <h3 class="font-display text-2xl text-ivory">Standard Room</h3>
-            <p class="text-gold text-3xl font-light mt-2">₦22,000 <span class="text-sm text-ivory/50 font-body">/ night</span></p>
-            <div class="w-full h-[1px] bg-gradient-to-r from-gold/60 via-gold/40 to-transparent mt-4 mb-5"></div>
-            <ul class="text-ivory/50 text-xs space-y-1.5 mb-6">
-              <li class="flex items-center gap-2"><span class="text-gold text-sm">✦</span> Double bed · Work area</li>
-              <li class="flex items-center gap-2"><span class="text-gold text-sm">✦</span> Flat-screen TV · WiFi</li>
-              <li class="flex items-center gap-2"><span class="text-gold text-sm">✦</span> En-suite bathroom</li>
-            </ul>
-            <a href="booking" class="btn-gold-outline rounded-full px-8 py-3 text-[0.55rem] tracking-[0.2em] uppercase w-full mt-auto">Book This Room</a>
-          </div>
+      </div>
+      <div class="facility-card h-[300px] reveal">
+        <div class="img-zoom w-full h-full">
+          <img src="pool-main.webp" alt="Dual Pool Complex" loading="lazy">
+        </div>
+        <div class="overlay">
+          <h3 class="font-display text-2xl text-ivory">Dual Pool Complex</h3>
+          <p class="text-ivory/60 text-sm mt-1">Daytime relaxation by the water.</p>
+        </div>
+      </div>
+      <div class="facility-card h-[300px] reveal">
+        <div class="img-zoom w-full h-full">
+          <img src="hero-building.webp" alt="Hotel Exterior" loading="lazy">
+        </div>
+        <div class="overlay">
+          <h3 class="font-display text-2xl text-ivory">Hotel Exterior</h3>
+          <p class="text-ivory/60 text-sm mt-1">Modern design in the heart of Warri.</p>
+        </div>
+      </div>
+      <div class="facility-card h-[300px] reveal">
+        <div class="img-zoom w-full h-full">
+          <img src="pool-night.webp" alt="Evening Lounge" loading="lazy">
+        </div>
+        <div class="overlay">
+          <h3 class="font-display text-2xl text-ivory">Evening Lounge</h3>
+          <p class="text-ivory/60 text-sm mt-1">Poolside ambiance at dusk.</p>
+        </div>
+      </div>
+      <div class="facility-card h-[300px] reveal">
+        <div class="img-zoom w-full h-full">
+          <img src="room-presidential.webp" alt="Signature Suites" loading="lazy">
+        </div>
+        <div class="overlay">
+          <h3 class="font-display text-2xl text-ivory">Signature Suites</h3>
+          <p class="text-ivory/60 text-sm mt-1">Elegance in every corner.</p>
+        </div>
+      </div>
+      <div class="facility-card h-[300px] reveal">
+        <div class="img-zoom w-full h-full">
+          <img src="restaurant.webp" alt="Restaurant & Bar" loading="lazy">
+        </div>
+        <div class="overlay">
+          <h3 class="font-display text-2xl text-ivory">Restaurant &amp; Bar</h3>
+          <p class="text-ivory/60 text-sm mt-1">Continental and local cuisine in refined settings.</p>
+        </div>
+      </div>
+      <div class="facility-card h-[300px] reveal">
+        <div class="img-zoom w-full h-full">
+          <img src="bar-lounge.webp" alt="Bar & Lounge" loading="lazy">
+        </div>
+        <div class="overlay">
+          <h3 class="font-display text-2xl text-ivory">Bar &amp; Lounge</h3>
+          <p class="text-ivory/60 text-sm mt-1">Unwind with handcrafted cocktails.</p>
+        </div>
+      </div>
+      <div class="facility-card h-[300px] reveal">
+        <div class="img-zoom w-full h-full">
+          <img src="breakfast-area.webp" alt="Breakfast Area" loading="lazy">
+        </div>
+        <div class="overlay">
+          <h3 class="font-display text-2xl text-ivory">Breakfast Lounge</h3>
+          <p class="text-ivory/60 text-sm mt-1">Start your day with a complimentary spread.</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CTA -->
-  <section class="py-16 lg:py-24 px-5 lg:px-16 bg-navy-dark reveal">
-    <div class="max-w-7xl mx-auto text-center">
-      <span class="text-gold text-[0.55rem] tracking-[0.4em] uppercase font-medium">Book Today</span>
-      <h2 class="font-display text-3xl md:text-5xl lg:text-6xl text-ivory mt-3 font-light">
-        Experience <em class="text-gold not-italic">Refined Hospitality</em>
-      </h2>
-      <div class="gold-divider w-20 mx-auto mt-5"></div>
-      <p class="text-ivory/60 max-w-2xl mx-auto mt-6 text-sm leading-relaxed">From the moment you arrive, every detail is designed for your comfort. Reserve your stay and discover the Kayriott difference.</p>
-      <a href="booking" class="btn-gold-fill rounded-full px-10 py-4 text-[0.6rem] tracking-[0.25em] uppercase font-semibold inline-block mt-8">Book Your Stay</a>
-    </div>
-  </section>
+<!-- CTA -->
+<section class="py-16 lg:py-24 px-5 lg:px-16 bg-navy-dark reveal">
+  <div class="max-w-7xl mx-auto text-center">
+    <span class="text-gold text-[0.55rem] tracking-[0.4em] uppercase font-medium">Book Today</span>
+    <h2 class="font-display text-3xl md:text-5xl lg:text-6xl text-ivory mt-3 font-light">
+      Experience <em class="text-gold not-italic">Refined Hospitality</em>
+    </h2>
+    <div class="gold-divider w-20 mx-auto mt-5"></div>
+    <p class="text-ivory/60 max-w-2xl mx-auto mt-6 text-sm leading-relaxed">From the moment you arrive, every detail is designed for your comfort. Reserve your stay and discover the Kayriott difference.</p>
+    <a href="booking" class="btn-gold-fill rounded-full px-10 py-4 text-[0.6rem] tracking-[0.25em] uppercase font-semibold inline-block mt-8">Book Your Stay</a>
+  </div>
+</section>
 
 <footer class="bg-[#060606] pt-16 pb-8 px-5 lg:px-16">
   <div class="max-w-7xl mx-auto">
@@ -203,7 +251,6 @@
 </a>
 
 <script>
-  // NAVBAR SCROLL EFFECT
   const navbar = document.getElementById('navbar');
 
   window.addEventListener('scroll', () => {
@@ -214,7 +261,6 @@
     }
   });
 
-  // MOBILE NAV TOGGLE
   function toggleMobileNav() {
     const nav = document.getElementById('mobileNav');
     const toggle = document.getElementById('mobileToggle');
@@ -226,7 +272,6 @@
 
   document.getElementById('mobileToggle').addEventListener('click', toggleMobileNav);
 
-  // SCROLL REVEAL (IntersectionObserver)
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
