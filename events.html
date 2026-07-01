@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Host your next event at Kayriott Hotel & Suites — weddings, birthdays, corporate functions in Effurun-Warri, Delta State.">
+  <title>Events — Kayriott Hotel & Suites</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: '#C9A84C',
+            'gold-light': '#E8C97A',
+            'gold-dark': '#A8882E',
+            ivory: '#F5F0E8',
+            'ivory-muted': '#C4BBAF',
+            midnight: '#0a0a0a',
+            'navy-dark': '#0d1117',
+            zinc: { 900: '#141414' },
+          },
+          fontFamily: {
+            display: ['Playfair Display', 'serif'],
+            body: ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .split-hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      min-height: 90vh;
+    }
+    .split-hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 2rem;
+      background: #0a0a0a;
+    }
+    .split-hero-image {
+      position: relative;
+      min-height: 50vh;
+      overflow: hidden;
+    }
+    .split-hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .split-hero-image .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
+    }
+    @media (min-width: 1024px) {
+      .split-hero { grid-template-columns: 1fr 1fr; }
+      .split-hero-content { padding: 5rem 4rem; }
+      .split-hero-image { min-height: auto; }
+    }
+
+    .event-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+    .event-row.reverse .event-image { order: 1; }
+    .event-row.reverse .event-text { order: 2; }
+    @media (min-width: 1024px) {
+      .event-row { grid-template-columns: 1.1fr 0.9fr; gap: 4rem; }
+      .event-row.reverse { grid-template-columns: 0.9fr 1.1fr; }
+    }
+    .event-image {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+      aspect-ratio: 4/3;
+    }
+    .event-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .event-image:hover img { transform: scale(1.05); }
+    .event-image .placeholder-fallback {
+      width: 100%;
+      height: 100%;
+      background: #141414;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #C9A84C;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-style: italic;
+    }
+    .event-tag {
+      display: inline-block;
+      background: rgba(201, 168, 76, 0.1);
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      color: #C9A84C;
+      padding: 0.4rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .perk-card {
+      background: #141414;
+      border-top: 3px solid #C9A84C;
+      border-radius: 0 0 1rem 1rem;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .perk-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 30px rgba(201, 168, 76, 0.08);
+    }
+    .perk-card .perk-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .mobile-toggle.open span:nth-child(1) { top: 9px !important; transform: rotate(45deg); }
+    .mobile-toggle.open span:nth-child(2) { opacity: 0; }
+    .mobile-toggle.open span:nth-child(3) { top: 9px !important; transform: rotate(-45deg); }
+  </style>
+</head>
+<body>
+
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-[200] transition-all duration-500">
+  <div class="max-w-7xl mx-auto px-5 lg:px-16 flex items-center justify-between py-4 lg:py-5">
+    <a href="index.html" class="nav-logo font-display text-2xl lg:text-3xl uppercase tracking-[0.1em] leading-none text-white">
+      Kayriott<span class="text-[#C9A84C]"> Hotel &amp; Suites</span>
+    </a>
+
+    <ul class="hidden xl:flex items-center gap-10 list-none">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="rooms.html" class="nav-link">Rooms</a></li>
+      <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+      <li><a href="facilities.html" class="nav-link">Facilities</a></li>
+      <li><a href="events.html" class="nav-link active">Events</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+
+    <a href="booking.html" class="nav-cta hidden xl:inline-block bg-[#C9A84C] text-[#0a0a0a] rounded-full px-7 py-2.5 text-[0.6rem] tracking-[0.2em] uppercase font-semibold transition-all duration-300 hover:bg-[#E8C97A] hover:scale-[1.02]">Book Now</a>
+
+    <button class="mobile-toggle xl:hidden w-7 h-5 relative cursor-pointer z-200" id="mobileToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="absolute left-0 w-full h-[2px] bg-[#C9A84C] transition-all duration-300" style="top:0"></span>
+      <span class="absolute left-0 w-full h-[2px] bg-[#C9A84C] transition-all duration-300" style="top:9px"></span>
+      <span class="absolute left-0 w-full h-[2px] bg-[#C9A84C] transition-all duration-300" style="top:18px"></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-nav fixed top-0 left-0 right-0 bottom-0 bg-[rgba(0,0,0,0.97)] z-[190] flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-all duration-400 xl:hidden" id="mobileNav">
+  <a href="index.html" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Home</a>
+  <a href="rooms.html" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Rooms</a>
+  <a href="gallery.html" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Gallery</a>
+  <a href="facilities.html" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Facilities</a>
+  <a href="events.html" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Events</a>
+  <a href="contact.html" class="text-[#F5F0E8] no-underline text-lg tracking-[0.2em] uppercase font-display transition-colors duration-300 hover:text-[#C9A84C]" onclick="toggleMobileNav()">Contact</a>
+  <a href="booking.html" class="bg-[#C9A84C] text-[#0a0a0a] rounded-full px-10 py-3 text-[0.65rem] tracking-[0.2em] uppercase font-semibold transition-all duration-300 hover:bg-[#E8C97A]" onclick="toggleMobileNav()">Book Now</a>
+</div>
+
+<!-- HERO: Split layout -->
+<section class="split-hero">
+  <div class="split-hero-content">
+    <span class="text-gold text-[0.55rem] tracking-[0.4em] uppercase font-medium">✦ Celebrate With Us</span>
+    <h1 class="font-display text-4xl md:text-6xl lg:text-7xl text-ivory mt-4 font-light leading-tight">
+      Host Your Next<br>
+      <em class="text-gold not-italic">Event With Us</em>
+    </h1>
+    <div class="gold-divider w-16 mt-6"></div>
+    <p class="text-ivory/60 text-sm md:text-base mt-6 leading-relaxed max-w-xl">
+      From intimate birthday celebrations to grand wedding receptions and corporate gatherings — our versatile event hall and dedicated team bring every occasion to life.
+    </p>
+    <div class="flex flex-wrap gap-3 mt-8">
+      <a href="https://wa.me/2348087354890?text=Hello%20Kayriott%20Hotel%20%26%20Suites!%20I%27d%20like%20to%20enquire%20about%20hosting%20an%20event%20at%20your%20hotel." target="_blank" rel="noopener noreferrer" class="btn-gold-fill rounded-full px-10 py-4 text-[0.6rem] tracking-[0.25em] uppercase font-semibold inline-block">Book Your Event</a>
+      <a href="#event-types" class="btn-gold-outline rounded-full px-10 py-4 text-[0.6rem] tracking-[0.25em] uppercase">Explore Spaces</a>
+    </div>
+  </div>
+  <div class="split-hero-image">
+    <img src="images/events/hero-event-hall.jpg" alt="Kayriott Event Hall" loading="lazy" onerror="this.parentElement.innerHTML='<div class=placeholder-fallback>Event Hall</div>'">
+    <div class="overlay"></div>
+    <style>
+      .split-hero-image .placeholder-fallback {
+        width: 100%;
+        height: 100%;
+        background: #141414;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #C9A84C;
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        font-style: italic;
+      }
+    </style>
+  </div>
+</section>
+
+<!-- EVENT TYPES: Alternating rows -->
+<section id="event-types" class="py-20 lg:py-28 px-5 lg:px-16 bg-midnight">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 lg:mb-20 reveal">
+      <span class="text-gold text-[0.55rem] tracking-[0.4em] uppercase font-medium">✦ Our Spaces</span>
+      <h2 class="font-display text-3xl md:text-5xl lg:text-6xl text-ivory mt-3 font-light">
+        Every Event Finds Its <em class="text-gold not-italic">Home</em>
+      </h2>
+      <div class="gold-divider w-20 mx-auto mt-5"></div>
+    </div>
+
+    <!-- Wedding -->
+    <div class="event-row reveal">
+      <div class="event-image">
+        <img src="images/events/wedding-reception.jpg" alt="Wedding reception setup" loading="lazy" onerror="this.parentElement.innerHTML='<div class=placeholder-fallback>Wedding Reception</div>'">
+      </div>
+      <div class="event-text">
+        <span class="event-tag">Weddings</span>
+        <h3 class="font-display text-2xl md:text-3xl text-ivory mt-4 font-light">Aisle to After-Party</h3>
+        <p class="text-ivory/60 text-sm md:text-base mt-4 leading-relaxed">
+          Our event hall transforms into an elegant wedding venue with stunning floral arrangements, coordinated lighting, and a seated reception layout that seats up to 200 guests. From intimate ceremonies to grand celebrations, every detail is tailored to your vision.
+        </p>
+      </div>
+    </div>
+
+    <!-- Birthday (reverse) -->
+    <div class="event-row reverse mt-16 lg:mt-24 reveal">
+      <div class="event-text">
+        <span class="event-tag">Birthdays</span>
+        <h3 class="font-display text-2xl md:text-3xl text-ivory mt-4 font-light">Celebrate Another Trip Around the Sun</h3>
+        <p class="text-ivory/60 text-sm md:text-base mt-4 leading-relaxed">
+          Mark your milestone in style. Whether it is a milestone birthday or an intimate gathering of close friends, our team sets the mood with custom decor, a dedicated dance floor area, and a menu crafted to your taste.
+        </p>
+      </div>
+      <div class="event-image">
+        <img src="images/events/birthday-party.jpg" alt="Birthday party setup" loading="lazy" onerror="this.parentElement.innerHTML='<div class=placeholder-fallback>Birthday Party</div>'">
+      </div>
+    </div>
+
+    <!-- Corporate / Social -->
+    <div class="event-row mt-16 lg:mt-24 reveal">
+      <div class="event-image">
+        <img src="images/events/corporate-gathering.jpg" alt="Corporate event setup" loading="lazy" onerror="this.parentElement.innerHTML='<div class=placeholder-fallback>Corporate Event</div>'">
+      </div>
+      <div class="event-text">
+        <span class="event-tag">Corporate &amp; Social</span>
+        <h3 class="font-display text-2xl md:text-3xl text-ivory mt-4 font-light">Where Business Meets Sophistication</h3>
+        <p class="text-ivory/60 text-sm md:text-base mt-4 leading-relaxed">
+          Conferences, anniversaries, product launches, or community gatherings — our hall adapts to any format. With AV equipment, flexible seating configurations, and a dedicated events coordinator, your event runs seamlessly from start to finish.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY HOST WITH US -->
+<section class="py-20 lg:py-28 px-5 lg:px-16 bg-navy-dark reveal">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-14">
+      <span class="text-gold text-[0.55rem] tracking-[0.4em] uppercase font-medium">✦ Why Host With Us</span>
+      <h2 class="font-display text-3xl md:text-5xl lg:text-6xl text-ivory mt-3 font-light">
+        Everything You Need Under <em class="text-gold not-italic">One Roof</em>
+      </h2>
+      <div class="gold-divider w-20 mx-auto mt-5"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+      <div class="perk-card reveal">
+        <div class="perk-icon">
+          <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21h18"/>
+            <path d="M5 21V7l8-4v18"/>
+            <path d="M19 21V11l-6-4"/>
+            <path d="M9 9v.01"/>
+            <path d="M9 12v.01"/>
+            <path d="M9 15v.01"/>
+            <path d="M9 18v.01"/>
+          </svg>
+        </div>
+        <h4 class="font-display text-xl text-ivory">Spacious Hall</h4>
+        <p class="text-ivory/60 text-sm mt-3 leading-relaxed">Our event hall accommodates up to 200 guests with flexible seating — theatre, banquet, classroom, or cocktail style. High ceilings and ambient lighting set the tone.</p>
+      </div>
+      <div class="perk-card reveal">
+        <div class="perk-icon">
+          <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5"/>
+            <path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <h4 class="font-display text-xl text-ivory">Full Catering</h4>
+        <p class="text-ivory/60 text-sm mt-3 leading-relaxed">Choose from our curated menu packages — continental, intercontinental, and local delicacies. Our kitchen team handles everything from canapés to multi-course dinners.</p>
+      </div>
+      <div class="perk-card reveal">
+        <div class="perk-icon">
+          <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33"/>
+            <path d="M4.6 15a1.65 1.65 0 0 0-.33 1.82l-.06.06a2 2 0 1 0 2.83 2.83l.06-.06a1.65 1.65 0 0 0-.33-1.82"/>
+            <path d="M12 2v4"/>
+            <path d="M4.93 4.93l2.83 2.83"/>
+            <path d="M19.07 4.93l-2.83 2.83"/>
+          </svg>
+        </div>
+        <h4 class="font-display text-xl text-ivory">Flexible Decor</h4>
+        <p class="text-ivory/60 text-sm mt-3 leading-relaxed">Work with our in-house decor team to bring your theme to life. From colour palettes and floral arrangements to lighting and drapery, your vision sets the direction.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-20 lg:py-28 px-5 lg:px-16 bg-midnight reveal">
+  <div class="max-w-3xl mx-auto text-center">
+    <span class="text-gold text-[0.55rem] tracking-[0.4em] uppercase font-medium">✦ Let's Plan Together</span>
+    <h2 class="font-display text-3xl md:text-5xl lg:text-6xl text-ivory mt-3 font-light">
+      Ready to Host? <em class="text-gold not-italic">Let's Talk</em>
+    </h2>
+    <div class="gold-divider w-20 mx-auto mt-5"></div>
+    <p class="text-ivory/60 text-sm md:text-base mt-6 leading-relaxed max-w-xl mx-auto">
+      Tell us about your event — date, estimated guest count, and any special requirements. We will put together a proposal tailored to you.
+    </p>
+    <a href="https://wa.me/2348087354890?text=Hello%20Kayriott%20Hotel%20%26%20Suites!%20I%27d%20like%20to%20enquire%20about%20hosting%20an%20event%20at%20your%20hotel." target="_blank" rel="noopener noreferrer" class="btn-gold-fill rounded-full px-12 py-4 text-[0.6rem] tracking-[0.25em] uppercase font-semibold inline-block mt-8">Inquire on WhatsApp</a>
+  </div>
+</section>
+
+<footer class="bg-[#060606] pt-16 pb-8 px-5 lg:px-16">
+  <div class="max-w-7xl mx-auto">
+    <div class="footer-grid grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 lg:gap-16">
+      <div>
+        <a href="index.html" class="nav-logo font-display text-2xl lg:text-3xl uppercase tracking-[0.1em] leading-none text-white">
+          Kayriott<span class="text-[#C9A84C]"> Hotel &amp; Suites</span>
+        </a>
+        <p class="text-[#F5F0E8]/60 text-sm mt-4 leading-relaxed">Where comfort meets refined hospitality.</p>
+        <p class="text-[#F5F0E8]/40 text-xs mt-4 leading-relaxed">Km 3 Refinery Road, Effurun-Warri, Delta State, Nigeria</p>
+      </div>
+      <div>
+        <h4 class="font-display text-lg text-[#F5F0E8] mb-4">Navigate</h4>
+        <ul class="space-y-2.5 list-none">
+          <li><a href="index.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Home</a></li>
+          <li><a href="rooms.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Rooms</a></li>
+          <li><a href="gallery.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Gallery</a></li>
+          <li><a href="facilities.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Facilities</a></li>
+          <li><a href="contact.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-display text-lg text-[#F5F0E8] mb-4">Connect</h4>
+        <ul class="space-y-2.5 list-none">
+          <li><a href="contact.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Contact Us</a></li>
+          <li><a href="booking.html" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Book Now</a></li>
+          <li><a href="https://wa.me/2348087354890" target="_blank" rel="noopener noreferrer" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">WhatsApp</a></li>
+          <li><a href="#" class="text-[#F5F0E8]/60 text-sm transition-colors duration-300 hover:text-[#C9A84C] no-underline">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom border-t border-[#C9A84C] mt-12 pt-8 text-center">
+      <p class="text-[#F5F0E8]/30 text-[0.65rem] tracking-wider">&copy; 2025 Kayriott Hotel &amp; Suites. All Rights Reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/2348087354890" class="whatsapp-float fixed bottom-6 right-6 w-14 h-14 bg-[#25d366] rounded-full flex items-center justify-center z-[999] shadow-lg transition-transform duration-300 hover:scale-110" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" width="24" height="24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script>
+  const navbar = document.getElementById('navbar');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 80) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+
+  function toggleMobileNav() {
+    const nav = document.getElementById('mobileNav');
+    const toggle = document.getElementById('mobileToggle');
+    const isOpen = nav.classList.toggle('open');
+    toggle.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+
+  document.getElementById('mobileToggle').addEventListener('click', toggleMobileNav);
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>
